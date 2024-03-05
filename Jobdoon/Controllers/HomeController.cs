@@ -15,6 +15,7 @@ namespace Jobdoon.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.isEmployer = false;
             return View();
         }
 

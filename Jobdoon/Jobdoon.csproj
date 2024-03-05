@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
 
   <ItemGroup>

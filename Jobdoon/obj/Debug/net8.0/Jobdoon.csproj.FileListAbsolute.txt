@@ -232,3 +232,5 @@ E:\CSP2\Jobdoon\Jobdoon\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relationa
 E:\CSP2\Jobdoon\Jobdoon\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 E:\CSP2\Jobdoon\Jobdoon\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 E:\CSP2\Jobdoon\Jobdoon\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+E:\CSP2\Jobdoon\Jobdoon\obj\Debug\net8.0\Jobdoon.sourcelink.json
+E:\CSP2\Jobdoon\Jobdoon\obj\Debug\net8.0\scopedcss\Views\Shared\_EmployerLayout.cshtml.rz.scp.css
