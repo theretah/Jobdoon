@@ -2,7 +2,61 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a></p>
+@*Search banner*@
+<div class="container-fluid bg-gradient bg-primary bg-opacity-75 py-5">
+    <div class="container text-center">
+        <h3 class="text-light">۲۳,۲۹۷ آگهی استخدام فعال در ۹,۴۰۷ شرکت ایرانی</h3>
+        <p class="text-light">
+            جاب دون: سامانه کاریابی آنلاین با بیشترین تعداد آگهی استخدام در ایران
+        </p>
+    </div>
+    <div class="container mt-5">
+        <form class="row">
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" class="form-control" id="inputPassword2" placeholder="عنوان شغلی، نام شرکت، مهارت یا ...">
+                </div>
+                <div class="col-3">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>همه ی استان ها</option>
+                        <option value="1">تهران</option>
+                        <option value="2">البرز</option>
+                        <option value="3">سمنان</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>همه ی دسته بندی ها</option>
+                        <option value="1">نرم افزار و وب</option>
+                        <option value="2">شبکه</option>
+                        <option value="3">بازاریابی</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary mb-3">جستجو در مشاغل</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container text-center mt-2">
+        <button class="btn text-white" href="#">مشاهده همه آگهی‌های استخدام</button>
+    </div>
+</div>
+
+@*Companies with job supply banner*@
+<div class="container mt-5">
+    <div class="d-flex justify-content-evenly">
+        @for (int i = 0; i < 7; i++)
+        {
+            <div class="card text-center border-0 align-items-center">
+                <img src="~/images/main.jpg" class="card-img-top" alt="..." style="width:90px; height:90px;">
+                <div class="card-body">
+                    <p class="card-title text-secondary">تعداد فرصت شغلی</p>
+                    <a href="#" class="card-text text-decoration-none">نام شرکت</a>
+                </div>
+            </div>
+        }
+    </div>
 </div>

@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\images\\main.jpg",
+      "PackagePath": "staticwebassets\\images\\main.jpg"
+    },
+    {
       "Id": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

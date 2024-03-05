@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="~/Jobdoon.styles.css" asp-append-version="true" />
 </head>
 @{
-    var isAuthenticated = true;
+    var isAuthenticated = false;
     var userIsEmployer = true;
 }
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary box-shadow">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -30,15 +30,15 @@
                                 خانه
                             </a>
                         </li>
-                        @await Component.InvokeAsync("Navbar", new { isAuthenticated = isAuthenticated, isEmployer = userIsEmployer})
+                        @await Component.InvokeAsync("Navbar", new { isAuthenticated = isAuthenticated, isEmployer = userIsEmployer })
                     </ul>
                 </div>
                 <a class="navbar-brand ms-3" asp-area="" asp-controller="Home" asp-action="Index">Jobdoon</a>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container-fluid p-0 pb-5 min-vh-100">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
