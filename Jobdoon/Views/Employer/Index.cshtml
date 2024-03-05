@@ -1,8 +1,113 @@
 ﻿@{
-    ViewData["Title"] = "Employer Home Page";
+    ViewData["Title"] = "جذب نیرو | ثبت آگهی استخدام | جاب دون";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a></p>
+@*Overview of employers' part*@
+<div class="container-fluid bg-dark  py-5">
+    <div class="container text-center">
+        <h1 class="text-light">سریع‌ترین و به‌صرفه‌ترین ابزار استخدام</h1>
+        <p class="text-light mt-3">
+            با درج آگهی استخدام در جابینجا، همین امروز فرصت شغلی شرکت خود را به متخصصان ایرانی اطلاع‌رسانی کنید
+        </p>
+    </div>
+    <div class="container text-center mt-5">
+        <button class="btn btn-primary" style="min-width:250px;min-height:50px;">
+            <span class="fs-5">
+                درج آگهی استخدام
+            </span>
+        </button>
+        <p class="text-white mt-3" href="#">انتشار اولین آگهی با ۵۰٪ تخفیف - ۹۰ هزار تومان</p>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <div class="row">
+        @for (int i = 0; i < 3; i++)
+        {
+            <div class="col">
+                <div class="card text-center border-0 w-100  align-items-center">
+                    <img src="~/images/main.jpg" class="card-img-top" alt="..." style="width:100px;">
+                    <div class="card-body w-100">
+                        <h5 class="card-title">ویژگی اصلی</h5>
+                        <p class="card-text">توضیحات راجع به اینکه چرا کارفرما باید این سامانه را برای جذب نیروی موردنیاز خود انتخاب کند.</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <h2 class="text-center mt-5">آگهی استخدام چگونه و کجا منتشر می‌شود؟</h2>
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col float-end">
+            @for (int i = 1; i < 4; i++)
+            {
+                <div class="row mb-5">
+                    <div class="col-2">
+                        <img src="~/images/main.jpg" class="rounded-start" alt="..." style="width:50px;height:50px;">
+                    </div>
+                    <div class="col-10">
+                        <h5 class="card-title">روش @i</h5>
+                        <h5 class="card-title text-black-50">توضیحات این روش</h5>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col">
+            <img src="~/images/c.webp" alt="Alternate Text" style="max-height:300px;" />
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+<div class="container-fluid bg-dark py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col">
+                <h2 class="text-light">۶۷,۸۴۵</h2>
+                <p class="text-light mt-3">
+                    آگهی آنلاین در ۹۰ روز اخیر
+                </p>
+            </div>
+            <div class="col">
+                <h2 class="text-light">۶۴/۸ میلیون</h2>
+                <p class="text-light mt-3">
+                    اطلاع‌رسانی‌های ارسال شده در ۹۰ روز اخیر
+                </p>
+            </div>
+            <div class="col">
+                <h2 class="text-light">۲ روز و ۱۴ ساعت</h2>
+                <p class="text-light mt-3">
+                    میانگین زمان دریافت ۲۰ رزومه اول
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="text-center mt-5">جذب نیرو و درج آگهی استخدام در جاب دون</h2>
+    <p class="text-center mt-3 fs-5">
+        با درج آگهی استخدام در جابینجا، همین امروز فرصت شغلی شرکت خود را به متخصصان ایرانی اطلاع‌رسانی کنید
+    </p>
+
+    <div class="row mt-5">
+        @for (int i = 0; i < 12; i++)
+        {
+            <div class="col-4 mb-4">
+                <div class="row">
+                    <div class="col-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check2 d-inline" viewBox="0 0 16 16">
+                            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                        </svg>
+                    </div>
+                    <div class="col">
+                        <p class="h6">ابزار های جاب دون</p>
+                        <p class="fs-6 text-black-50">توضیحات و جزییات ابزار</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>

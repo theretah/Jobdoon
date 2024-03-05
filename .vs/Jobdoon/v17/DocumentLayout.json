@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\CSP2\\Jobdoon\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,47 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml.css",
-              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Shared\\_Layout.cshtml.css",
-              "RelativeDocumentMoniker": "Jobdoon\\Views\\Shared\\_Layout.cshtml.css",
-              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Shared\\_Layout.cshtml.css",
-              "RelativeToolTip": "Jobdoon\\Views\\Shared\\_Layout.cshtml.css",
-              "ViewState": "AQIAABgAAAAAAAAAAAAAACwAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-03-05T12:28:24.654Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Jobdoon\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Jobdoon\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACcAAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-05T12:15:44.512Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Jobdoon\\Views\\Home\\Index.cshtml",
-              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Jobdoon\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA0AAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-05T11:30:34.673Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"

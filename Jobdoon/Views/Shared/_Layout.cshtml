@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Jobdoon</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Jobdoon.styles.css" asp-append-version="true" />
@@ -37,7 +37,7 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid p-0 pb-5 min-vh-100">
+    <div class="container-fluid p-0 pb-5" style="min-height:280vh;" >
         <main role="main">
             @RenderBody()
         </main>

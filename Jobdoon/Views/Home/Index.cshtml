@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "استخدام | آگهی استخدام | سایت کاریابی | جاب دون";
 }
 
 @*Search banner*@
@@ -16,7 +16,7 @@
                 <div class="col-4">
                     <input type="text" class="form-control" id="inputPassword2" placeholder="عنوان شغلی، نام شرکت، مهارت یا ...">
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                     <select class="form-select" id="inlineFormSelectPref">
                         <option selected>همه ی استان ها</option>
@@ -25,7 +25,7 @@
                         <option value="3">سمنان</option>
                     </select>
                 </div>
-                <div class="col-3">
+                <div class="col">
                     <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                     <select class="form-select" id="inlineFormSelectPref">
                         <option selected>همه ی دسته بندی ها</option>
@@ -35,7 +35,7 @@
                     </select>
                 </div>
                 <div class="col-2">
-                    <button type="submit" class="btn btn-primary mb-3">جستجو در مشاغل</button>
+                    <button type="submit" class="btn btn-primary mb-3 w-100">جستجو در مشاغل</button>
                 </div>
             </div>
         </form>
@@ -45,16 +45,100 @@
     </div>
 </div>
 
-@*Companies with job supply banner*@
 <div class="container mt-5">
-    <div class="d-flex justify-content-evenly">
-        @for (int i = 0; i < 7; i++)
+    @*Companies with job supply banner*@
+    <div class="row">
+        <div class="d-flex justify-content-evenly">
+            @for (int i = 0; i < 7; i++)
+            {
+                <div class="card text-center border-0 align-items-center">
+                    <img src="~/images/main.jpg" class="card-img-top" alt="..." style="width:90px; height:90px;">
+                    <div class="card-body">
+                        <p class="card-title text-secondary">تعداد فرصت شغلی</p>
+                        <a href="#" class="card-text text-decoration-none">نام شرکت</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @*Registration invite*@
+    <div class="row align-items-center bg-light mt-5 py-3 rounded">
+        <div class="col-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+            </svg>
+            همین حالا در جاب دون ثبت نام کن و دنبال شغل مورد علاقه ات باش.
+        </div>
+        <div class="col-6">
+            کارفرما هستید؟
+            <span>
+                <a asp-controller="Employer" class="text-decoration-none">ورود به بخش کارفرمایان</a>
+            </span>
+            |
+            <button type="button" class="btn btn-primary w-25">ثبت نام کارجو</button>
+            <button type="button" class="btn btn-outline-primary w-25">ورود کارجو</button>
+        </div>
+    </div>
+
+    @*Latest opportunities*@
+    <div class="row mt-5">
+        <h3>آخرین آگهی ها</h3>
+        <hr />
+        @for (int i = 0; i < 6; i++)
         {
-            <div class="card text-center border-0 align-items-center">
-                <img src="~/images/main.jpg" class="card-img-top" alt="..." style="width:90px; height:90px;">
+            <div class="card mb-3 me-3" style="max-width: 420px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="~/images/main.jpg" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">عنوان موقعیت شغلی</h5>
+                            <p class="card-text">نام شرکت</p>
+                            <p class="card-text">استان - شهر</p>
+                            <p class="card-text">نوع قرارداد</p>
+                            <p class="card-text float-end"><small class="text-muted">زمان درج آگهی</small></p>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @*Popular companies*@
+    <div class="row mt-5">
+        <h3>آشنایی با شرکت ها</h3>
+        <hr />
+        @for (int i = 0; i < 3; i++)
+        {
+            <div class="card me-3" style="width: 420px;">
                 <div class="card-body">
-                    <p class="card-title text-secondary">تعداد فرصت شغلی</p>
-                    <a href="#" class="card-text text-decoration-none">نام شرکت</a>
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="~/images/main.jpg" class="rounded-start" alt="..." style="width:50px;height:50px;">
+                        </div>
+                        <div class="col-10">
+                            <h5 class="card-title">نام شرکت</h5>
+                            <h5 class="card-title text-black-50">حوزه فعالیت</h5>
+                        </div>
+                    </div>
+                </div>
+                <img src="~/images/c.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">خلاصه ای از توضیحات راجع به شرکت. این توضیحات میتوانند تاریخچه ای کوتاه از شرکت، راز موفقیت یا ماندگاری شرکت، و یا ویژگی هایی باشند که لازم است کارجویان بدانند.</p>
+                    <hr />
+                </div>
+                <div class="card-body">
+                    <span class="card-link">تعداد شغل های فعال</span>
+                    <a href="#" class="card-link text-decoration-none float-end">
+                        صفحه شرکت
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         }
