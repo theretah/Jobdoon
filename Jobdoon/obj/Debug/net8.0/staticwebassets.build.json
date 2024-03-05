@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9ccCLAvmL1tQtHWBurHYzWxYjnMEZLsauPmS2U6cixc=",
+  "Hash": "1UVI/Mt46qI09S3FZaIx8mcBQW3PEw9l4M67ZLfNQXc=",
   "Source": "Jobdoon",
   "BasePath": "_content/Jobdoon",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\images\\c.webp",
+      "SourceId": "Jobdoon",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\",
+      "BasePath": "_content/Jobdoon",
+      "RelativePath": "images/c.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\c.webp"
     },
     {
       "Identity": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\images\\main.jpg",
