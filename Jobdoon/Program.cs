@@ -1,7 +1,15 @@
+using Jobdoon.Database;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<JobdoonContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("JobdoonCS")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<JobdoonContext>();
 
 var app = builder.Build();
 

@@ -12,7 +12,7 @@
     var isAuthenticated = false;
     var userIsEmployer = true;
 }
-<body>
+<body class="mb-0">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary box-shadow">
             <div class="container">
@@ -37,12 +37,12 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid p-0 pb-5" style="min-height:280vh;" >
+    <div class="container-fluid p-0" >
         <main role="main">
             @RenderBody()
         </main>
     </div>
-    <footer class="border-top footer text-muted bg-dark">
+    <footer class="border-top footer text-muted bg-dark py-3">
         <div class="container">
             <table class="table table-borderless table-dark">
                 <thead>
