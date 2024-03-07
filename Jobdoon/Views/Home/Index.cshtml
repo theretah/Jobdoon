@@ -1,7 +1,7 @@
-﻿@{
+﻿@model Jobdoon.ViewModels.IndexViewModel
+@{
     ViewData["Title"] = "استخدام | آگهی استخدام | سایت کاریابی | جاب دون";
 }
-
 @*Search banner*@
 <div class="container-fluid bg-gradient bg-primary bg-opacity-75 py-5">
     <div class="container text-center">
@@ -19,18 +19,20 @@
                 <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                 <select class="form-select" id="inlineFormSelectPref">
                     <option selected>همه ی استان ها</option>
-                    <option value="1">تهران</option>
-                    <option value="2">البرز</option>
-                    <option value="3">سمنان</option>
+                    @foreach (var p in Model.Provinces)
+                    {
+                        <option value="@p.Id">@p.Name</option>
+                    }
                 </select>
             </div>
             <div class="col">
                 <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                 <select class="form-select" id="inlineFormSelectPref">
                     <option selected>همه ی دسته بندی ها</option>
-                    <option value="1">نرم افزار و وب</option>
-                    <option value="2">شبکه</option>
-                    <option value="3">بازاریابی</option>
+                    @foreach (var c in Model.Categories)
+                    {
+                        <option value="@c.Id">@c.Title</option>
+                    }
                 </select>
             </div>
             <div class="col-2">

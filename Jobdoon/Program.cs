@@ -1,6 +1,7 @@
 using Jobdoon.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Jobdoon.DataAccess.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<JobdoonContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("JobdoonCS")));
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<JobdoonContext>();
 
