@@ -2,24 +2,26 @@ using Jobdoon.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Jobdoon.DataAccess.UnitOfWork;
+using Jobdoon.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<JobdoonContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("JobdoonCS")));
+builder.Services.AddRazorPages();
+
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<JobdoonContext>();
+builder.Services.AddDbContext<JobdoonContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("JobdoonCS")));
+
+builder.Services.AddDefaultIdentity<AppUser>(options =>
+    options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<JobdoonContext>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -29,7 +31,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

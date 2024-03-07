@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Jobdoon.Models.Entities;
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<AppUser> userManager
+<!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
     <meta charset="utf-8" />
@@ -9,8 +12,12 @@
     <link rel="stylesheet" href="~/Jobdoon.styles.css" asp-append-version="true" />
 </head>
 @{
-    var isAuthenticated = false;
-    var userIsEmployer = true;
+    var isAuthenticated = User.Identity.IsAuthenticated;
+    AppUser user = new();
+    if (isAuthenticated)
+    {
+        user = userManager.GetUserAsync(User).Result;
+    }
 }
 <body class="mb-0">
     <header>
@@ -30,14 +37,14 @@
                                 خانه
                             </a>
                         </li>
-                        @await Component.InvokeAsync("Navbar", new { isAuthenticated = isAuthenticated, isEmployer = userIsEmployer })
+                        @await Component.InvokeAsync("Navbar", new { isAuthenticated = isAuthenticated, isEmployer = user.IsEmployer })
                     </ul>
                 </div>
                 <a class="navbar-brand ms-3" asp-area="" asp-controller="Home" asp-action="Index">Jobdoon</a>
             </div>
         </nav>
     </header>
-    <div class="container-fluid p-0" >
+    <div class="container-fluid p-0">
         <main role="main">
             @RenderBody()
         </main>

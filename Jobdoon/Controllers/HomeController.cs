@@ -5,29 +5,36 @@ using Jobdoon.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Jobdoon.ViewModels;
+using Microsoft.AspNetCore.Identity;
 namespace Jobdoon.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork unit;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public HomeController(ILogger<HomeController> logger, IUnitOfWork unit)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unit,SignInManager<AppUser> signInManager)
         {
             _logger = logger;
             this.unit = unit;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Index()
         {
-            ViewBag.isEmployer = false;
-
-
             return View(new IndexViewModel
             {
                 Provinces = unit.Provinces.GetAll(),
                 Categories = unit.Categories.GetAll()
             });
+        }
+
+        public IActionResult Logout()
+        {
+            signInManager.SignOutAsync();
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

@@ -17,8 +17,8 @@ namespace Jobdoon.Models.Entities
         public MilitaryService? MilitaryService { get; set; }
         public int? MilitaryServiceId { get; set; }
 
-        public Degree Degree { get; set; }
-        public int DegreeId { get; set; }
+        public Degree? Degree { get; set; }
+        public int? DegreeId { get; set; }
 
         public IEnumerable<Save>? Saves { get; set; }
         public IEnumerable<Request>? Requests { get; set; }
