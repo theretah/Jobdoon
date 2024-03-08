@@ -44,16 +44,12 @@ namespace Jobdoon.Areas.Identity.Pages.Account
             _emailSender = emailSender;
         }
 
-
-
         [BindProperty]
         public string FullName { get; set; }
-
 
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
 
         [BindProperty]
         [Required]
@@ -73,7 +69,6 @@ namespace Jobdoon.Areas.Identity.Pages.Account
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "رمزعبور با تکرار آن تطابق ندارد.")]
         public string ConfirmPassword { get; set; }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {

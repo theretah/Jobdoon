@@ -9,5 +9,12 @@ namespace Jobdoon.DataAccess.Repositories
         public DegreeRepository(JobdoonContext context) : base(context)
         {
         }
+
+        public IEnumerable<Degree> GetValids()
+        {
+            return JobdoonContext.Degrees.Where(d => d.Title != "مهم نیست");
+        }
+
+        public JobdoonContext JobdoonContext { get { return Context as JobdoonContext; } }
     }
 }

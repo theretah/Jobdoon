@@ -9,5 +9,12 @@ namespace Jobdoon.DataAccess.Repositories
         public MilitaryServiceRepository(JobdoonContext context) : base(context)
         {
         }
+
+        public IEnumerable<MilitaryService> GetValids()
+        {
+            return JobdoonContext.MilitaryServices.Where(ms => ms.Title != "مهم نیست");
+        }
+
+        public JobdoonContext JobdoonContext { get { return Context as JobdoonContext; } }
     }
 }

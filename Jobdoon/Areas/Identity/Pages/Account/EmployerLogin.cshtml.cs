@@ -41,14 +41,12 @@ namespace Jobdoon.Areas.Identity.Pages.Account
 
         [Required]
         [BindProperty]
-        //[EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [BindProperty]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
 
         [BindProperty]
         public bool RememberMe { get; set; }
@@ -74,9 +72,6 @@ namespace Jobdoon.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-
-            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(Email, Password, RememberMe, lockoutOnFailure: false);
@@ -86,15 +81,6 @@ namespace Jobdoon.Areas.Identity.Pages.Account
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
-                //if (result.RequiresTwoFactor)
-                //{
-                //    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                //}
-                //if (result.IsLockedOut)
-                //{
-                //    _logger.LogWarning("User account locked out.");
-                //    return RedirectToPage("./Lockout");
-                //}
                 else
                 {
                     ModelState.AddModelError(string.Empty, "ورود نامعتبر.");
