@@ -121,6 +121,7 @@ namespace Jobdoon.Areas.Identity.Pages.Account
                 user.FullName = FullName;
                 user.EmailConfirmed = true;
                 user.PhoneNumberConfirmed = true;
+                user.IsEmployer = false;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

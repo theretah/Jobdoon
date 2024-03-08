@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
+<!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
     <meta charset="utf-8" />
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="~/Jobdoon.styles.css" asp-append-version="true" />
 </head>
 @{
-    var isAuthenticated = false;
+    var isAuthenticated = User.Identity.IsAuthenticated;
 }
 <body>
     <header>
@@ -37,7 +38,7 @@
                             </a>
                         </li>
 
-                        @await Component.InvokeAsync("ENavbar", new {isAuthenticated = isAuthenticated})
+                        @await Component.InvokeAsync("EmployerNavbar", new {isAuthenticated = isAuthenticated})
 
                         <li class="nav-item">
                             <a class="nav-link text-secondary">

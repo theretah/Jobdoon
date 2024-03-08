@@ -1,0 +1,44 @@
+﻿@page
+@model EmployerLoginModel
+
+@{
+    ViewData["Title"] = "ورود کارفرما | جاب دون";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col mx-auto" style="max-width:500px;">
+            <section>
+                <form id="account" method="post" class="mb-3">
+                    <div class="text-center mb-3">
+                        <h4>ورود به حساب کارفرمایی</h4>
+                    </div>
+                    <div class="bg-light rounded p-3 text-black">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">ایمیل</label>
+                            <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="ایمیل خود را وارد کنید." />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">رمز عبور</label>
+                            <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="رمز عبور خود را وارد کنید." />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div >
+                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">ورود</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="text-center">
+                    رمزعبور خود را فراموش کرده اید؟
+                    <span><a asp-page="" class="text-decoration-none fw-bold">بازیابی رمزعبور</a></span>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -7,6 +7,7 @@ namespace Jobdoon.Models.Entities
         public string FullName { get; set; }
         public bool IsEmployer { get; set; }
         public byte[]? ProfileImage { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         public Gender? Gender { get; set; }
         public int? GenderId { get; set; }

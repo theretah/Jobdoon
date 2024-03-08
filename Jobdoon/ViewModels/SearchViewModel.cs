@@ -2,7 +2,7 @@
 
 namespace Jobdoon.ViewModels
 {
-    public class IndexViewModel
+    public class SearchViewModel
     {
         public IEnumerable<Province> Provinces { get; set; }
         public IEnumerable<Category> Categories { get; set; }

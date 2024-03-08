@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Jobdoon.styles.css" asp-append-version="true" />
+</head>
+<body dir="rtl" class="bg-dark">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            @if (ViewData["EmployerAccount"] == "Register")
+                            {
+                                <span class="text-light">
+                                    حساب کارفرمایی دارید؟
+                                    <a class="text-light text-decoration-none fw-bold" asp-page="EmployerLogin">وارد شوید</a>
+                                </span>
+                            }
+                            else if (ViewData["EmployerAccount"] == "Login")
+                            {
+                                <span class="text-light">
+                                    حساب کارفرمایی ندارید؟
+                                    <a class="text-light text-decoration-none fw-bold" asp-page="EmployerRegister">ثبت نام کارفرمایان</a>
+                                </span>
+                            }
+                        </li>
+                    </ul>
+                </div>
+                <a class="navbar-brand ms-3" asp-area="" asp-controller="Home" asp-action="Index"><h1>Jobdoon</h1></a>
+            </div>
+        </nav>
+    </header>
+    <div class="text-light">
+        <div role="main">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

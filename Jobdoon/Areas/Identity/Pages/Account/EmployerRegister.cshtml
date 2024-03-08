@@ -1,0 +1,59 @@
+﻿@page
+@model EmployerRegisterModel
+@{
+    ViewData["Title"] = "ثبت نام کارفرما | جاب دون";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col mx-auto" style="max-width:500px;">
+            <section>
+                <form id="account" method="post" class="mb-3">
+                    <div class="text-center mb-3">
+                        <h4>ثبت نام کارفرمایان</h4>
+                    </div>
+                    <div class="bg-light rounded p-3 text-black">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label">نام و نام خانوادگی</label>
+                            <input asp-for="FullName" class="form-control" autocomplete="username" aria-required="true" placeholder="مثلا محمدرضا طاهر" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">ایمیل</label>
+                            <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" placeholder="ایمیل خود را وارد کنید." />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Phone" class="form-label">شماره موبایل</label>
+                            <input asp-for="Phone" class="form-control" autocomplete="username" aria-required="true" placeholder="مثلا 09927428675" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">انتخاب رمزعبور</label>
+                            <input asp-for="Password" class="form-control" autocomplete="username" aria-required="true" placeholder="حداقل 8 کارکتر..." />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label">تکرار رمزعبور</label>
+                            <input asp-for="ConfirmPassword" class="form-control" autocomplete="username" aria-required="true" placeholder="" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <button id="register-submit" type="submit" class="w-100 btn btn-lg btn-primary">ثبت نام</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="text-center">
+                    با ثبت نام در جاب دون با
+                    <span><a asp-page="" class="text-decoration-none fw-bold">قوانین و شرایط استفاده</a></span>
+                    موافقت می‌کنید
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

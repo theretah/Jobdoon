@@ -23,18 +23,12 @@ namespace Jobdoon.Controllers
 
         public IActionResult Index()
         {
-            return View(new IndexViewModel
+            ViewBag.Layout = "_Layout";
+            return View(new SearchViewModel
             {
                 Provinces = unit.Provinces.GetAll(),
                 Categories = unit.Categories.GetAll()
             });
-        }
-
-        public IActionResult Logout()
-        {
-            signInManager.SignOutAsync();
-
-            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

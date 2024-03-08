@@ -1,13 +1,4 @@
 ﻿@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
 @{
-    var user = userManager.GetUserAsync(User).Result;
-    if (user != null && user.IsEmployer)
-    {
-        Layout = "_EmployerLayout";
-    }
-
-    else
-    {
-        Layout = "_Layout";
-    }
+    Layout = ViewBag.Layout;
 }

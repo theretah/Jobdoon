@@ -14,14 +14,8 @@ namespace Jobdoon.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.Layout = "_EmployerLayout";
             return View();
-        }
-
-        public IActionResult Logout()
-        {
-            signInManager.SignOutAsync();
-
-            return RedirectToAction("Index");
         }
     }
 }

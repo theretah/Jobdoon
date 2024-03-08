@@ -8,12 +8,12 @@ namespace Jobdoon.DataAccess.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly IdentityDbContext context;
+        protected readonly IdentityDbContext Context;
         private DbSet<T> set;
 
         public Repository(IdentityDbContext context)
         {
-            this.context = context;
+            Context = context;
             set = context.Set<T>();
         }
 

@@ -2,7 +2,7 @@
 
 namespace Jobdoon.ViewComponents
 {
-    public class ENavbarViewComponent : ViewComponent
+    public class EmployerNavbarViewComponent : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(bool isAuthenticated)
         {
