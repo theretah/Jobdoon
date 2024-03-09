@@ -1,0 +1,123 @@
+﻿@model Jobdoon.Models.Entities.Opportunity
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@{
+    ViewData["Title"] = "ایجاد آگهی جدید | جاب دون";
+
+    var categories = unit.Categories.GetAll();
+    var provinces = unit.Provinces.GetAll();
+    var assignments = unit.Assignments.GetAll();
+    var salaries = unit.MinimumSalaries.GetAll();
+    var experiences = unit.Experiences.GetAll();
+    var degrees = unit.Degrees.GetAll();
+    var genders = unit.Genders.GetAll();
+    var militaryServices = unit.MilitaryServices.GetAll();
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-8">
+            <form asp-controller="Employer" asp-action="CreateOpportunity" class="bg-light p-5 rounded">
+                <span class="h4">ایجاد آگهی استخدام</span>
+                <hr />
+                <div class="mb-3">
+                    <label for="titleInput" class="form-label">عنوان آگهی</label>
+                    <input asp-for="Title" class="form-control" placeholder="انتخاب عنوان شغلی مناسب، مثلا: مدیر مالی" id="titleInput">
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="categoryInput" class="form-label">دسته بندی شغلی</label>
+                        <select asp-for="CategoryId" class="form-select" id="categoryInput">
+                            @foreach (var item in categories)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="provinceInput" class="form-label">استان</label>
+                        <select asp-for="ProvinceId" class="form-select" id="provinceInput">
+                            @foreach (var item in provinces)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="assignmentInput" class="form-label">نوع همکاری</label>
+                        <select asp-for="AssignmentId" class="form-select" id="assignmentInput">
+                            @foreach (var item in assignments)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="minimumSalaryInput" class="form-label">حداقل حقوق</label>
+                        <select asp-for="MinimumSalaryId" class="form-select" id="minimumSalaryInput">
+                            @foreach (var item in salaries)
+                            {
+                                if (item.Value == null)
+                                {
+                                    <option value="@item.Id">@item.Title</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Value</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="descriptionInput" class="form-label">شرح شغل | مسئولیت ها</label>
+                    <textarea asp-for="Description" class="form-control" id="descriptionInput" rows="3"></textarea>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="experienceInput" class="form-label">سابقه کار مرتبط</label>
+                        <select asp-for="ExperienceId" class="form-select" id="experienceInput">
+                            @foreach (var item in experiences)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="degreeInput" class="form-label">حداقل مدرک تحصیلی مورد نیار</label>
+                        <select asp-for="DegreeId" class="form-select" id="degreeInput">
+                            @foreach (var item in degrees)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="genderInput" class="form-label">جنسیت</label>
+                        <select asp-for="GenderId" class="form-select" id="genderInput">
+                            @foreach (var item in genders)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="mlitaryInput" class="form-label">وضعیت خدمت سربازی</label>
+                        <select asp-for="MilitaryServiceId" class="form-select" id="mlitaryInput">
+                            @foreach (var item in militaryServices)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-success">انتشار آگهی</button>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

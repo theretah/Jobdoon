@@ -21,7 +21,7 @@ namespace Jobdoon.Controllers
                 Categories = unit.Categories.GetAll(),
                 Assignments = unit.Assignments.GetAll(),
                 Experiences = unit.Experiences.GetAll(),
-                UnspecifiedSalaries = unit.UnspecifiedSalaries.GetAll()
+                UnspecifiedSalaries = unit.MinimumSalaries.GetAll()
             });
         }
     }

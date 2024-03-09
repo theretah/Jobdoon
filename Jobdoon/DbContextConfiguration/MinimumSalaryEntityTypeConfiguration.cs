@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Jobdoon.DbContextConfiguration
 {
-    public class UnspecifiedSalaryEntityTypeConfiguration : IEntityTypeConfiguration<UnspecifiedSalary>
+    public class MinimumSalaryEntityTypeConfiguration : IEntityTypeConfiguration<MinimumSalary>
     {
-        public void Configure(EntityTypeBuilder<UnspecifiedSalary> builder)
+        public void Configure(EntityTypeBuilder<MinimumSalary> builder)
         {
             builder.HasMany(p => p.Opportunities)
-                .WithOne(o => o.UnspecifiedSalary)
+                .WithOne(o => o.MinimumSalary)
                 .HasForeignKey(o => o.ExperienceId);
         }
     }

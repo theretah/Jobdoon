@@ -24,7 +24,7 @@ namespace Jobdoon.DataAccess.UnitOfWork
             Requests = new RequestRepository(context);
             RequestStates = new RequestStateRepository(context);
             Saves = new SaveRepository(context);
-            UnspecifiedSalaries = new UnspecifiedSalaryRepository(context);
+            MinimumSalaries = new MinimumSalaryRepository(context);
         }
 
         public IAssignmentRepository Assignments { get; private set; }
@@ -53,7 +53,7 @@ namespace Jobdoon.DataAccess.UnitOfWork
 
         public ISaveRepository Saves { get; private set; }
 
-        public IUnspecifiedSalaryRepository UnspecifiedSalaries { get; private set; }
+        public IMinimumSalaryRepository MinimumSalaries { get; private set; }
 
         public int Complete()
         {

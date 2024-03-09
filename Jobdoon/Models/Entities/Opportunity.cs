@@ -5,7 +5,6 @@
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public decimal Salary { get; set; }
         public DateTime Date { get; set; }
 
         public Province Province { get; set; }
@@ -23,8 +22,8 @@
         public Experience Experience { get; set; }
         public int ExperienceId { get; set; }
 
-        public UnspecifiedSalary? UnspecifiedSalary { get; set; }
-        public int? UnspecifiedSalaryId { get; set; }
+        public MinimumSalary? MinimumSalary { get; set; }
+        public int? MinimumSalaryId { get; set; }
 
         public MilitaryService MilitaryService { get; set; }
         public int MilitaryServiceId { get; set; }

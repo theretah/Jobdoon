@@ -10,7 +10,7 @@ namespace Jobdoon.DbContextConfiguration
         {
             builder.HasMany(p => p.Opportunities)
                 .WithOne(o => o.Assignment)
-                .HasForeignKey(o => o.ExperienceId);
+                .HasForeignKey(o => o.AssignmentId);
         }
     }
 }

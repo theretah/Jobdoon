@@ -2,7 +2,7 @@
 
 namespace Jobdoon.DataAccess.IRepositories
 {
-    public interface IUnspecifiedSalaryRepository : IRepository<UnspecifiedSalary>
+    public interface IMinimumSalaryRepository : IRepository<MinimumSalary>
     {
     }
 }

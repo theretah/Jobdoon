@@ -1,0 +1,21 @@
+Employer
+	Dashboard
+		Index
+
+		Company	
+			Edit profile
+
+		Opportunities
+			Index
+			Active opportunities
+			Closed opportunities
+			Create
+			
+	EmployerProfile
+		Edit
+
+
+Company
+	Index (Overview)
+	About
+	Opportunities list

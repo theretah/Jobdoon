@@ -4,6 +4,7 @@ using Jobdoon.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Jobdoon.Migrations
 {
     [DbContext(typeof(JobdoonContext))]
-    partial class JobdoonContextModelSnapshot : ModelSnapshot
+    [Migration("20240309165940_EditMinimumSalary_TurnDecimalToInteger")]
+    partial class EditMinimumSalary_TurnDecimalToInteger
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,8 +241,6 @@ namespace Jobdoon.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssignmentId");
 
                     b.HasIndex("DegreeId");
 
@@ -619,15 +620,15 @@ namespace Jobdoon.Migrations
 
             modelBuilder.Entity("Jobdoon.Models.Entities.Opportunity", b =>
                 {
-                    b.HasOne("Jobdoon.Models.Entities.Assignment", "Assignment")
-                        .WithMany("Opportunities")
-                        .HasForeignKey("AssignmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Jobdoon.Models.Entities.Degree", "Degree")
                         .WithMany("Opportunities")
                         .HasForeignKey("DegreeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Jobdoon.Models.Entities.Assignment", "Assignment")
+                        .WithMany("Opportunities")
+                        .HasForeignKey("ExperienceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

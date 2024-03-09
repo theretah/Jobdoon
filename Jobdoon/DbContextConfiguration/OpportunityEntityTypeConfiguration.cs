@@ -20,7 +20,7 @@ namespace Jobdoon.DbContextConfiguration
             builder.HasOne(o => o.Assignment)
                .WithMany(a => a.Opportunities);
 
-            builder.HasOne(o => o.UnspecifiedSalary)
+            builder.HasOne(o => o.MinimumSalary)
               .WithMany(a => a.Opportunities);
 
             builder.HasOne(o => o.Gender)

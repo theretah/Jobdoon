@@ -25,7 +25,7 @@ namespace Jobdoon.Database
         public DbSet<Gender> Genders { get; set; }
         public DbSet<MilitaryService> MilitaryServices { get; set; }
         public DbSet<RequestState> RequestStates { get; set; }
-        public DbSet<UnspecifiedSalary> UnspecifiedSalaries { get; set; }
+        public DbSet<MinimumSalary> MinimumSalaries { get; set; }
         public DbSet<PersonnelCount> PersonnelCounts { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Degree> Degrees { get; set; }
