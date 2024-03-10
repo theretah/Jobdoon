@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BMQZ2JLv+SlJsaU5ehExQr/orMvU2/Oii0A5muKwRVY=",
+  "Hash": "bY1YS5kSJn5dGXfm2RrYHF5c9d6KIoLVrV/Ro8FEQzk=",
   "Source": "Jobdoon",
   "BasePath": "_content/Jobdoon",
   "Mode": "Default",
@@ -1250,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\c.webp"
+    },
+    {
+      "Identity": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\images\\companywallpaper.jpg",
+      "SourceId": "Jobdoon",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\",
+      "BasePath": "_content/Jobdoon",
+      "RelativePath": "images/companywallpaper.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\companywallpaper.jpg"
     },
     {
       "Identity": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\images\\main.jpg",

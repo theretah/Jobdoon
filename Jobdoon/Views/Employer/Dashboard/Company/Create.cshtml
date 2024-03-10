@@ -1,0 +1,62 @@
+﻿@model Jobdoon.ViewModels.CreateCompanyViewModel
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@{
+    var personnelCounts = unit.PersonnelCounts.GetAll();
+    var categories = unit.Categories.GetAll();
+
+}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-8">
+            <form asp-controller="Employer" asp-action="CreateCompany" class="bg-light p-5 rounded" method="post" enctype="multipart/form-data">
+                <h3>ایجاد شرکت</h3>
+                <hr />
+                <div class="mb-3">
+                    <label for="persianNameInput" class="form-label">نام فارسی شرکت</label>
+                    <input asp-for="Company.PersianName" class="form-control" id="persianNameInput" placeholder="مثلا جاب دون">
+                </div>
+                <div class="mb-3">
+                    <label for="latinNameInput" class="form-label">نام لاتین شرکت</label>
+                    <input asp-for="Company.LatinName" class="form-control" id="latinNameInput" placeholder="مثلا Jobdoon">
+                </div>
+                <div class="mb-3">
+                    <label for="logoInput" class="form-label">لوگوی شرکت</label>
+                    <input asp-for="LogoImageFile" class="form-control" id="logoInput" accept="image/*">
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">حوزه فعالیت شرکت</label>
+                    <select asp-for="Company.CategoryId" class="form-select" id="category">
+                        @foreach (var c in categories)
+                        {
+                            <option value="@c.Id">@c.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="telephoneInput" class="form-label">تلفن شرکت (محرمانه)</label>
+                    <input asp-for="Company.Telephone" class="form-control" id="telephoneInput">
+                </div>
+                <div class="mb-3">
+                    <label for="websiteInput" class="form-label">وبسایت شرکت</label>
+                    <input asp-for="Company.Website" class="form-control" id="websiteInput" placeholder="مثلا jobdoon.ir">
+                </div>
+                <div class="mb-3">
+                    <label for="addressInput" class="form-label">آدرس شرکت</label>
+                    <input asp-for="Company.Address" class="form-control" id="addressInput">
+                </div>
+                <div class="mb-3">
+                    <label for="personnelCount" class="form-label">تعداد پرسنل شرکت</label>
+                    <select asp-for="Company.PersonnelCountId" class="form-select" id="personnelCount">
+                        @foreach (var p in personnelCounts)
+                        {
+                            <option value="@p.Id">@p.Title</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">ثبت شرکت</button>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

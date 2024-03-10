@@ -1,5 +1,7 @@
 ﻿using Jobdoon.DataAccess.UnitOfWork;
 using Jobdoon.Models.Entities;
+using Jobdoon.Utilities;
+using Jobdoon.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +23,9 @@ namespace Jobdoon.Controllers
         [BindProperty]
         public Opportunity CreateOpportunityModel { get; set; }
 
+        [BindProperty]
+        public CreateCompanyViewModel CreateCompanyViewModel { get; set; }
+
         public IActionResult Index()
         {
             ViewBag.Layout = "_EmployerLayout";
@@ -35,11 +40,35 @@ namespace Jobdoon.Controllers
             return View("Dashboard/Index");
         }
 
-        public IActionResult EditCompany()
+        public IActionResult EditCompany(int? companyId)
         {
             ViewBag.Layout = "_EmployerLayout";
 
+            if (companyId == null)
+            {
+                return View("Dashboard/Company/Create", CreateCompanyViewModel);
+            }
+
             return View("Dashboard/Company/Edit");
+        }
+
+        [HttpPost]
+        public IActionResult CreateCompany()
+        {
+            unit.Companies.Add(new Company
+            {
+                EmployerId = userManager.GetUserId(User),
+                PersianName = CreateCompanyViewModel.Company.PersianName,
+                LatinName = CreateCompanyViewModel.Company.LatinName,
+                CategoryId = CreateCompanyViewModel.Company.CategoryId,
+                PersonnelCountId = CreateCompanyViewModel.Company.PersonnelCountId,
+                Address = CreateCompanyViewModel.Company.Address,
+                Telephone = CreateCompanyViewModel.Company.Telephone,
+                Website = CreateCompanyViewModel.Company.Website,
+                LogoImage = ImageUtilities.ImageFileToByteArray(CreateCompanyViewModel.LogoImageFile)
+            });
+            unit.Complete();
+            return RedirectToAction("Index", "Company");
         }
 
         public IActionResult Opportunities()
@@ -88,8 +117,7 @@ namespace Jobdoon.Controllers
             });
             unit.Complete();
 
-            // Later, the action must return to Views/Company/Opportunities
-            return View("Dashboard/Index");
+            return View("/Views/Company/Opportunities");
         }
     }
 }

@@ -21,10 +21,14 @@ namespace Jobdoon.DbContextConfiguration
                .WithMany(a => a.Opportunities);
 
             builder.HasOne(o => o.MinimumSalary)
-              .WithMany(a => a.Opportunities);
+              .WithMany(ms => ms.Opportunities);
 
             builder.HasOne(o => o.Gender)
-              .WithMany(a => a.Opportunities);
+              .WithMany(g => g.Opportunities);
+
+            builder.HasOne(o => o.Company)
+            .WithMany(c => c.Opportunities)
+            .HasForeignKey(o => o.CompanyId);
         }
     }
 }

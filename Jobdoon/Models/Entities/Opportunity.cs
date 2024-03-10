@@ -22,14 +22,17 @@
         public Experience Experience { get; set; }
         public int ExperienceId { get; set; }
 
-        public MinimumSalary? MinimumSalary { get; set; }
-        public int? MinimumSalaryId { get; set; }
+        public MinimumSalary MinimumSalary { get; set; }
+        public int MinimumSalaryId { get; set; }
 
         public MilitaryService MilitaryService { get; set; }
         public int MilitaryServiceId { get; set; }
 
         public Gender Gender { get; set; }
         public int GenderId { get; set; }
+
+        public Company? Company { get; set; }
+        public int? CompanyId { get; set; }
 
         public IEnumerable<Save>? Saves{ get; set; }
         public IEnumerable<Request>? Requests { get; set; }

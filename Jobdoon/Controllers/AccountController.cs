@@ -1,5 +1,6 @@
 ﻿using Jobdoon.DataAccess.UnitOfWork;
 using Jobdoon.Models.Entities;
+using Jobdoon.Utilities;
 using Jobdoon.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,16 +20,8 @@ namespace Jobdoon.Controllers
             this.userManager = userManager;
             this.unit = unit;
         }
-
         [BindProperty]
-        public AppUser AppUser { get; set; }
-
-        [BindProperty]
-        public int BirthDay { get; set; }
-        [BindProperty]
-        public int BirthMonth { get; set; }
-        [BindProperty]
-        public int BirthYear { get; set; }
+        public AccountViewModel Account { get; set; }
 
         public List<Gender> Genders { get; set; }
 
@@ -36,13 +29,16 @@ namespace Jobdoon.Controllers
         public IActionResult Index()
         {
             ViewBag.Layout = "_Layout";
-            AppUser = userManager.GetUserAsync(User).Result;
+            Account = new AccountViewModel
+            {
+                AppUser = userManager.GetUserAsync(User).Result
+            };
             return View(new AccountViewModel
             {
-                AppUser = AppUser,
-                BirthDay = AppUser.BirthDate.Value.Day,
-                BirthMonth = AppUser.BirthDate.Value.Month,
-                BirthYear = AppUser.BirthDate.Value.Year,
+                AppUser = Account.AppUser,
+                BirthDay = Account.AppUser.BirthDate.Value.Day,
+                BirthMonth = Account.AppUser.BirthDate.Value.Month,
+                BirthYear = Account.AppUser.BirthDate.Value.Year,
             });
         }
 
@@ -52,20 +48,24 @@ namespace Jobdoon.Controllers
             var user = userManager.GetUserAsync(User).Result;
             var genders = unit.Genders.GetValids().ToList();
 
-            user.FullName = AppUser.FullName;
-            user.PhoneNumber = AppUser.PhoneNumber;
+            user.FullName = Account.AppUser.FullName;
+            user.PhoneNumber = Account.AppUser.PhoneNumber;
 
-            user.Email = AppUser.Email;
-            user.NormalizedEmail = AppUser.NormalizedEmail;
-            user.UserName = AppUser.Email;
-            user.NormalizedUserName = AppUser.NormalizedEmail;
+            user.Email = Account.AppUser.Email;
+            user.NormalizedEmail = Account.AppUser.NormalizedEmail;
+            user.UserName = Account.AppUser.Email;
+            user.NormalizedUserName = Account.AppUser.NormalizedEmail;
 
-            user.BirthDate = new DateTime(BirthYear, BirthMonth, BirthDay);
-            user.DegreeId = AppUser.DegreeId;
-            user.GenderId = AppUser.GenderId;
+            user.BirthDate = new DateTime(Account.BirthYear, Account.BirthMonth, Account.BirthDay);
+            user.DegreeId = Account.AppUser.DegreeId;
+            user.GenderId = Account.AppUser.GenderId;
+            if (Account.ProfileImageFile != null)
+            {
+                user.ProfileImage = ImageUtilities.ImageFileToByteArray(Account.ProfileImageFile);
+            }
             if (user.GenderId == genders[0].Id)
             {
-                user.MilitaryServiceId = AppUser.MilitaryServiceId;
+                user.MilitaryServiceId = Account.AppUser.MilitaryServiceId;
             }
             else
             {

@@ -208,6 +208,9 @@ namespace Jobdoon.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CompanyId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -227,7 +230,7 @@ namespace Jobdoon.Migrations
                     b.Property<int>("MilitaryServiceId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MinimumSalaryId")
+                    b.Property<int>("MinimumSalaryId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProvinceId")
@@ -240,6 +243,8 @@ namespace Jobdoon.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AssignmentId");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("DegreeId");
 
@@ -625,6 +630,10 @@ namespace Jobdoon.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Jobdoon.Models.Entities.Company", "Company")
+                        .WithMany("Opportunities")
+                        .HasForeignKey("CompanyId");
+
                     b.HasOne("Jobdoon.Models.Entities.Degree", "Degree")
                         .WithMany("Opportunities")
                         .HasForeignKey("DegreeId")
@@ -670,6 +679,8 @@ namespace Jobdoon.Migrations
                     b.Navigation("Assignment");
 
                     b.Navigation("Category");
+
+                    b.Navigation("Company");
 
                     b.Navigation("Degree");
 
@@ -824,6 +835,8 @@ namespace Jobdoon.Migrations
                 {
                     b.Navigation("Employer")
                         .IsRequired();
+
+                    b.Navigation("Opportunities");
                 });
 
             modelBuilder.Entity("Jobdoon.Models.Entities.Degree", b =>

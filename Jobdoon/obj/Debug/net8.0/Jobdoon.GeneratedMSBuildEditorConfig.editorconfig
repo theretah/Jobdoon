@@ -82,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxPcHBvcnR1bml0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employer/Dashboard/Company/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRGFzaGJvYXJkXENvbXBhbnlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/CSP2/Jobdoon/Jobdoon/Views/Employer/Dashboard/Company/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRGFzaGJvYXJkXENvbXBhbnlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

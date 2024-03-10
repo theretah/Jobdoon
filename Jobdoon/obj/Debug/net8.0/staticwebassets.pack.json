@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\images\\c.webp"
     },
     {
+      "Id": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\images\\companywallpaper.jpg",
+      "PackagePath": "staticwebassets\\images\\companywallpaper.jpg"
+    },
+    {
       "Id": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\images\\main.jpg",
       "PackagePath": "staticwebassets\\images\\main.jpg"
     },

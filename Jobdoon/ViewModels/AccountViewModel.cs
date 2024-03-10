@@ -8,5 +8,6 @@ namespace Jobdoon.ViewModels
         public int BirthDay { get; set; }
         public int BirthMonth { get; set; }
         public int BirthYear { get; set; }
+        public IFormFile ProfileImageFile { get; set; }
     }
 }

@@ -18,5 +18,7 @@
 
         public Category Category { get; set; }
         public int CategoryId { get; set; }
+
+        public IEnumerable<Opportunity>? Opportunities { get; set; }
     }
 }
