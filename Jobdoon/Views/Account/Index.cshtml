@@ -5,9 +5,17 @@
 @{
     ViewData["Title"] = "حساب کاربری | جاب دون";
     var genders = unit.Genders.GetValids().ToList();
+
+    var userIsEmployer = Model.AppUser.IsEmployer;
 }
 <div class="container mt-3">
-    <h3>تنظیمات حساب کاربری</h3>
+    <h3>
+        تنظیمات حساب کاربری
+        @if (userIsEmployer)
+        {
+            <spam class="text-success">(کارفرما)</spam>
+        }
+    </h3>
 
     <br />
 
@@ -23,78 +31,81 @@
                 <label for="fullNameInput" class="form-label">نام و نام خانوادگی</label>
                 <input asp-for="AppUser.FullName" class="form-control" id="fullNameInput" placeholder="مثلا محمدرضا طاهر">
             </div>
-            <div class="mb-3">
-                <div class="row">
-                    <div class="col-1">
-                        <label for="day" class="form-label">روز تولد</label>
-                        <select asp-for="BirthDay" class="form-select" id="day">
-                            @for (int i = 1; i <= 31; i++)
-                            {
-                                <option value="@i">@i</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-1">
-                        <label for="month" class="form-label">ماه تولد</label>
-                        <select asp-for="BirthMonth" class="form-select" id="month">
-                            @for (int i = 1; i <= 12; i++)
-                            {
-                                <option value="@i">@i</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-2">
-                        <label for="year" class="form-label">سال تولد</label>
-                        <select asp-for="BirthYear" class="form-select" id="year">
-                            @for (int i = 1402; i >= 1300; i--)
-                            {
-                                <option value="@i">@i</option>
-                            }
-                        </select>
+            @if (!userIsEmployer)
+            {
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-1">
+                            <label for="day" class="form-label">روز تولد</label>
+                            <select asp-for="BirthDay" class="form-select" id="day">
+                                @for (int i = 1; i <= 31; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-1">
+                            <label for="month" class="form-label">ماه تولد</label>
+                            <select asp-for="BirthMonth" class="form-select" id="month">
+                                @for (int i = 1; i <= 12; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label for="year" class="form-label">سال تولد</label>
+                            <select asp-for="BirthYear" class="form-select" id="year">
+                                @for (int i = 1402; i >= 1300; i--)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label for="gender" class="form-label">جنسیت</label>
-                <br />
-                @{
-                    <div class="form-check form-check-inline">
-                        <input asp-for="AppUser.GenderId" onclick="enableMilitaryField()" class="form-check-input" type="radio" value="@genders[0].Id">
-                        <label class="form-check-label" for="@genders[0].Id">
-                            @genders[0].Title
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input asp-for="AppUser.GenderId" onclick="disableMilitaryField()" class="form-check-input" type="radio" value="@genders[1].Id">
-                        <label class="form-check-label" for="@genders[1].Id">
-                            @genders[1].Title
-                        </label>
-                    </div>
-                }
-            </div>
-            @{
+                <div class="mb-3">
+                    <label for="gender" class="form-label">جنسیت</label>
+                    <br />
+                    @{
+                        <div class="form-check form-check-inline">
+                            <input asp-for="AppUser.GenderId" onclick="enableMilitaryField()" class="form-check-input" type="radio" value="@genders[0].Id">
+                            <label class="form-check-label" for="@genders[0].Id">
+                                @genders[0].Title
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input asp-for="AppUser.GenderId" onclick="disableMilitaryField()" class="form-check-input" type="radio" value="@genders[1].Id">
+                            <label class="form-check-label" for="@genders[1].Id">
+                                @genders[1].Title
+                            </label>
+                        </div>
+                    }
+                </div>
+
                 var condition = (Model.AppUser.GenderId == genders[0].Id);
+
+                <div class="mb-3" id="militarySection" @(condition ? "" : "hidden")>
+                    <label for="military" class="form-label">وضعیت نظام وظیفه</label>
+                    <select asp-for="AppUser.MilitaryServiceId" class="form-select" id="military">
+                        <option selected>وضعیت خدمت خود را انتخاب کنید</option>
+                        @foreach (var item in unit.MilitaryServices.GetValids())
+                        {
+                            <option value="@item.Id">@item.Title</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="degree" class="form-label">تحصیلات</label>
+                    <select asp-for="AppUser.DegreeId" class="form-select" id="degree">
+                        <option selected>وضعیت تحصیلات خود را انتخاب کنید</option>
+                        @foreach (var item in unit.Degrees.GetValids())
+                        {
+                            <option value="@item.Id">@item.Title</option>
+                        }
+                    </select>
+                </div>
             }
-            <div class="mb-3" id="militarySection" @(condition ? "" : "hidden")>
-                <label for="military" class="form-label">وضعیت نظام وظیفه</label>
-                <select asp-for="AppUser.MilitaryServiceId" class="form-select" id="military">
-                    <option selected>وضعیت خدمت خود را انتخاب کنید</option>
-                    @foreach (var item in unit.MilitaryServices.GetValids())
-                    {
-                        <option value="@item.Id">@item.Title</option>
-                    }
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="degree" class="form-label">تحصیلات</label>
-                <select asp-for="AppUser.DegreeId" class="form-select" id="degree">
-                    <option selected>وضعیت تحصیلات خود را انتخاب کنید</option>
-                    @foreach (var item in unit.Degrees.GetValids())
-                    {
-                        <option value="@item.Id">@item.Title</option>
-                    }
-                </select>
-            </div>
         </div>
 
         <br />
@@ -106,17 +117,20 @@
             اطلاعات حساب
         </span>
         <div class="p-5 border rounded">
-            <div class="mb-3">
-                @if (Model.AppUser.ProfileImage != null)
-                {
-                    <div class="mb-3">
-                        <label for="currentProfileImage" class="form-label">تصویر پروفایل کنونی</label>
-                        <img class="form-control rounded-circle object-fit-contain p-0" src="@ImageUtilities.GenerateImageDataUrl(Model.AppUser.ProfileImage)" id="currentProfileImage" style="width:100px; height:100px;" />
-                    </div>
-                }
-                <label for="profileInput" class="form-label">انتخاب تصویر پروفایل</label>
-                <input asp-for="ProfileImageFile" class="form-control" id="profileInput">
-            </div>
+            @if (!userIsEmployer)
+            {
+                <div class="mb-3">
+                    @if (Model.AppUser.ProfileImage != null)
+                    {
+                        <div class="mb-3">
+                            <label for="currentProfileImage" class="form-label">تصویر پروفایل کنونی</label>
+                            <img class="form-control rounded-circle object-fit-contain p-0" src="@ImageUtilities.GenerateImageDataUrl(Model.AppUser.ProfileImage)" id="currentProfileImage" style="width:100px; height:100px;" />
+                        </div>
+                    }
+                    <label for="profileInput" class="form-label">انتخاب تصویر پروفایل</label>
+                    <input asp-for="ProfileImageFile" class="form-control" id="profileInput">
+                </div>
+            }
             <div class="mb-3">
                 <label for="emailInput" class="form-label">آدرس ایمیل</label>
                 <input asp-for="AppUser.Email" class="form-control" id="emailInput" placeholder="name@example.com">
@@ -144,4 +158,4 @@
             document.getElementById('militarySection').hidden = true
         }
     </script>
-}a
+}

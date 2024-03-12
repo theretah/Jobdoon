@@ -29,10 +29,18 @@ namespace Jobdoon.Controllers
         public IActionResult Index()
         {
             ViewBag.Layout = "_Layout";
+
+            var user = userManager.GetUserAsync(User).Result;
             Account = new AccountViewModel
             {
-                AppUser = userManager.GetUserAsync(User).Result
+                AppUser = user
             };
+
+            if (user.IsEmployer)
+            {
+                return View(Account);
+            }
+
             return View(new AccountViewModel
             {
                 AppUser = Account.AppUser,
@@ -50,31 +58,34 @@ namespace Jobdoon.Controllers
 
             user.FullName = Account.AppUser.FullName;
             user.PhoneNumber = Account.AppUser.PhoneNumber;
-
             user.Email = Account.AppUser.Email;
             user.NormalizedEmail = Account.AppUser.NormalizedEmail;
             user.UserName = Account.AppUser.Email;
             user.NormalizedUserName = Account.AppUser.NormalizedEmail;
 
-            user.BirthDate = new DateTime(Account.BirthYear, Account.BirthMonth, Account.BirthDay);
-            user.DegreeId = Account.AppUser.DegreeId;
-            user.GenderId = Account.AppUser.GenderId;
-            if (Account.ProfileImageFile != null)
+            if (!user.IsEmployer)
             {
-                user.ProfileImage = ImageUtilities.ImageFileToByteArray(Account.ProfileImageFile);
-            }
-            if (user.GenderId == genders[0].Id)
-            {
-                user.MilitaryServiceId = Account.AppUser.MilitaryServiceId;
-            }
-            else
-            {
-                user.MilitaryServiceId = null;
+                user.BirthDate = new DateTime(Account.BirthYear, Account.BirthMonth, Account.BirthDay);
+                user.DegreeId = Account.AppUser.DegreeId;
+                user.GenderId = Account.AppUser.GenderId;
+                if (Account.ProfileImageFile != null)
+                {
+                    user.ProfileImage = ImageUtilities.ImageFileToByteArray(Account.ProfileImageFile);
+                }
+                if (user.GenderId == genders[0].Id)
+                {
+                    user.MilitaryServiceId = Account.AppUser.MilitaryServiceId;
+                }
+                else
+                {
+                    user.MilitaryServiceId = null;
+                }
             }
 
             await userManager.UpdateAsync(user);
             return RedirectToAction("Index", "Home", null);
         }
+
         public IActionResult Logout()
         {
             signInManager.SignOutAsync();
