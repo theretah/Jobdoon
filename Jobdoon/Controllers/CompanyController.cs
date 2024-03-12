@@ -11,10 +11,12 @@ namespace Jobdoon.Controllers
         {
             this.unit = unit;
         }
+
         public IActionResult Index(int companyId)
         {
             ViewBag.Layout = "_Layout";
             var company = unit.Companies.Get(companyId);
+
             return View(company);
         }
 
@@ -22,6 +24,7 @@ namespace Jobdoon.Controllers
         {
             ViewBag.Layout = "_Layout";
             var company = unit.Companies.Get(companyId);
+
             return View(company);
         }
 
@@ -29,6 +32,7 @@ namespace Jobdoon.Controllers
         {
             ViewBag.Layout = "_Layout";
             var company = unit.Companies.Get(companyId);
+
             return View(company);
         }
     }

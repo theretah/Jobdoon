@@ -1,6 +1,8 @@
 ﻿@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
 @{
     var user = userManager.GetUserAsync(User).Result;
+    var company = unit.Companies.Find(c => c.EmployerId == user.Id).First();
 }
 <li class="nav-item ms-auto">
     <a asp-controller="Employer" asp-action="Dashboard" class="nav-link text-light">پنل استخدام</a>
@@ -17,7 +19,7 @@
         <ul class="dropdown-menu">
             <li>
                 <h6 class="dropdown-header">@user.FullName</h6>
-                <h6 class="dropdown-header">@user.CompanyId</h6>
+                <h6 class="dropdown-header">@company.LatinName | @company.PersianName</h6>
             </li>
             <li>
                 <a class="dropdown-item" href="#">
