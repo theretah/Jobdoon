@@ -90,10 +90,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRGFzaGJvYXJkXENvbXBhbnlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/CSP2/Jobdoon/Jobdoon/Views/Employer/Dashboard/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [E:/CSP2/Jobdoon/Jobdoon/Views/Employer/Dashboard/Opportunities/Active.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRGFzaGJvYXJkXE9wcG9ydHVuaXRpZXNcQWN0aXZlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -169,6 +165,10 @@ build_metadata.AdditionalFiles.CssScope =
 [E:/CSP2/Jobdoon/Jobdoon/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CSP2/Jobdoon/Jobdoon/Views/Shared/_EmployerDashboardLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FbXBsb3llckRhc2hib2FyZExheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-osc9kzj7vi
 
 [E:/CSP2/Jobdoon/Jobdoon/Views/Shared/_EmployerLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FbXBsb3llckxheW91dC5jc2h0bWw=

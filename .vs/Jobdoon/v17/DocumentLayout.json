@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "E:\\CSP2\\Jobdoon\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\employer\\dashboard\\opportunities\\closed.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\employer\\dashboard\\opportunities\\closed.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\employer\\dashboard\\opportunities\\active.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\employer\\dashboard\\opportunities\\active.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\employer\\dashboard\\opportunities\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\employer\\dashboard\\opportunities\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\dataaccess\\irepositories\\iopportunityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\dataaccess\\irepositories\\iopportunityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\controllers\\employercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\controllers\\employercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\dataaccess\\repositories\\opportunityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\dataaccess\\repositories\\opportunityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +34,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 7,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OpportunityRepository.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\DataAccess\\Repositories\\OpportunityRepository.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\DataAccess\\Repositories\\OpportunityRepository.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\DataAccess\\Repositories\\OpportunityRepository.cs",
+              "RelativeToolTip": "Jobdoon\\DataAccess\\Repositories\\OpportunityRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAABoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-12T20:07:05.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IOpportunityRepository.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\DataAccess\\IRepositories\\IOpportunityRepository.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\DataAccess\\IRepositories\\IOpportunityRepository.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\DataAccess\\IRepositories\\IOpportunityRepository.cs",
+              "RelativeToolTip": "Jobdoon\\DataAccess\\IRepositories\\IOpportunityRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-12T20:05:56.561Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -30,28 +72,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "EmployerController.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Controllers\\EmployerController.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\Controllers\\EmployerController.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Controllers\\EmployerController.cs",
+              "RelativeToolTip": "Jobdoon\\Controllers\\EmployerController.cs",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAAAKAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-12T19:55:21.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Account\\Index.cshtml",
-              "RelativeDocumentMoniker": "Jobdoon\\Views\\Account\\Index.cshtml",
-              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Account\\Index.cshtml",
-              "RelativeToolTip": "Jobdoon\\Views\\Account\\Index.cshtml",
-              "ViewState": "AQIAADkAAAAAAAAAAIAwwFYAAAAAAAAA",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Index.cshtml",
+              "RelativeDocumentMoniker": "Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Index.cshtml",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Index.cshtml",
+              "RelativeToolTip": "Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-12T16:25:29.633Z",
+              "WhenOpened": "2024-03-12T19:51:07.211Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Jobdoon\\Controllers\\AccountController.cs",
-              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Jobdoon\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAswFMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T16:20:47.105Z",
+              "Title": "Active.cshtml",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Active.cshtml",
+              "RelativeDocumentMoniker": "Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Active.cshtml",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Active.cshtml",
+              "RelativeToolTip": "Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Active.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-12T19:51:11.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Closed.cshtml",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Closed.cshtml",
+              "RelativeDocumentMoniker": "Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Closed.cshtml",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Closed.cshtml",
+              "RelativeToolTip": "Jobdoon\\Views\\Employer\\Dashboard\\Opportunities\\Closed.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAABhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-12T19:51:10.621Z",
               "EditorCaption": ""
             }
           ]

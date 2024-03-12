@@ -286,3 +286,4 @@ E:\CSP2\Jobdoon\Jobdoon\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 E:\CSP2\Jobdoon\Jobdoon\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 E:\CSP2\Jobdoon\Jobdoon\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
 E:\CSP2\Jobdoon\Jobdoon\obj\Debug\net8.0\Jobdoon.MvcApplicationPartsAssemblyInfo.cs
+E:\CSP2\Jobdoon\Jobdoon\obj\Debug\net8.0\scopedcss\Views\Shared\_EmployerDashboardLayout.cshtml.rz.scp.css

@@ -1,1 +1,46 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@{
+    var user = userManager.GetUserAsync(User).Result;
+    var opportunities = unit.Opportunities.FindIncluded(o => o.CompanyId == user.CompanyId).ToList();
+}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a asp-controller="Employer" asp-action="Opportunities" class="nav-link">همه آگهی ها</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active">اگهی های فعال</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Employer" asp-action="ClosedOpportunities" class="nav-link">آگهی های بسته شده</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var o in opportunities)
+        {
+            <div class="card mb-3 me-3" style="max-width: 420px;">
+                <div class="row g-0">
+                    <div class="card-body">
+                        <h5 class="card-title">@o.Title</h5>
+                        <p class="card-text">@o.Province.Name</p>
+                        <p class="card-text">@o.Assignment.Title</p>
+                        <p class="card-text">@((o.MinimumSalary.Title) == null? $"از {o.MinimumSalary.Value:n0} تومان" : o.MinimumSalary.Title)</p>
+                        <p class="card-text float-end"><small class="text-muted">@o.Date.ToString("dd/MMMM/yyyy")</small></p>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

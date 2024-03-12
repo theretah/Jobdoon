@@ -65,7 +65,7 @@
                                 }
                                 else
                                 {
-                                    <option value="@item.Id">@item.Value</option>
+                                    <option value="@item.Id">از @($"{item.Value:n0}") تومان</option>
                                 }
                             }
                         </select>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="descriptionInput" class="form-label">شرح شغل | مسئولیت ها</label>
-                    <textarea asp-for="Description" class="form-control" id="descriptionInput" rows="3"></textarea>
+                    <textarea asp-for="Description" class="form-control" id="descriptionInput" rows="15"></textarea>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
@@ -121,3 +121,13 @@
         <div class="col"></div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+    </script>
+}

@@ -4,6 +4,7 @@ using Jobdoon.Utilities;
 using Jobdoon.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Versioning;
 using System.ComponentModel.Design;
 using System.Net;
 
@@ -40,14 +41,14 @@ namespace Jobdoon.Controllers
 
         public IActionResult Dashboard()
         {
-            ViewBag.Layout = "_EmployerLayout";
+            ViewBag.Layout = "_EmployerDashboardLayout";
 
             return View("Dashboard/Index");
         }
 
         public IActionResult EditCompany(int? companyId)
         {
-            ViewBag.Layout = "_EmployerLayout";
+            ViewBag.Layout = "_EmployerDashboardLayout";
 
             if (companyId == null)
             {
@@ -112,32 +113,33 @@ namespace Jobdoon.Controllers
 
         public IActionResult Opportunities()
         {
-            ViewBag.Layout = "_EmployerLayout";
+            ViewBag.Layout = "_EmployerDashboardLayout";
             return View("Dashboard/Opportunities/Index");
         }
 
         public IActionResult ActiveOpportunities()
         {
-            ViewBag.Layout = "_EmployerLayout";
+            ViewBag.Layout = "_EmployerDashboardLayout";
             return View("Dashboard/Opportunities/Active");
         }
 
         public IActionResult ClosedOpportunities()
         {
-            ViewBag.Layout = "_EmployerLayout";
+            ViewBag.Layout = "_EmployerDashboardLayout";
             return View("Dashboard/Opportunities/Closed");
         }
 
         [HttpGet]
         public IActionResult NewOpportunity()
         {
-            ViewBag.Layout = "_EmployerLayout";
+            ViewBag.Layout = "_EmployerDashboardLayout";
             return View("Dashboard/Opportunities/Create", CreateOpportunityModel);
         }
 
         [HttpPost]
         public IActionResult CreateOpportunity()
         {
+            var companyId = userManager.GetUserAsync(User).Result.CompanyId;
             unit.Opportunities.Add(new Opportunity
             {
                 Title = CreateOpportunityModel.Title,
@@ -151,10 +153,11 @@ namespace Jobdoon.Controllers
                 ProvinceId = CreateOpportunityModel.ProvinceId,
                 DegreeId = CreateOpportunityModel.DegreeId,
                 GenderId = CreateOpportunityModel.GenderId,
+                CompanyId = companyId
             });
             unit.Complete();
 
-            return View("/Views/Company/Opportunities");
+            return RedirectToAction("Opportunities", "Company", new { companyId = companyId.Value });
         }
     }
 }
