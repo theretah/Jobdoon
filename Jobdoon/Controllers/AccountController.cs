@@ -92,5 +92,15 @@ namespace Jobdoon.Controllers
 
             return RedirectToAction("Index", "Home", null);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveProfilePhoto()
+        {
+            var user = await userManager.GetUserAsync(User);
+            user.ProfileImage = null;
+            await userManager.UpdateAsync(user);
+
+            return RedirectToAction("Index");
+        }
     }
 }

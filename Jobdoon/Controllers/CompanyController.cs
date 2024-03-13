@@ -1,4 +1,5 @@
 ﻿using Jobdoon.DataAccess.UnitOfWork;
+using Jobdoon.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jobdoon.Controllers
@@ -34,6 +35,18 @@ namespace Jobdoon.Controllers
             var company = unit.Companies.Get(companyId);
 
             return View(company);
+        }
+
+        public IActionResult OpportunityDetails(int opportunityId)
+        {
+            ViewBag.Layout = "_Layout";
+            var opportunity = unit.Opportunities.Get(opportunityId);
+
+            return View(new CompanyOpportunityViewModel
+            {
+                Company = unit.Companies.Get(opportunity.CompanyId.Value),
+                Opportunity = opportunity
+            });
         }
     }
 }

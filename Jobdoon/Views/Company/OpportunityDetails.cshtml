@@ -1,0 +1,93 @@
+﻿@model Jobdoon.ViewModels.CompanyOpportunityViewModel
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@await Component.InvokeAsync("CompanyHeader", new { companyId = Model.Company.Id })
+<ul class="nav nav-tabs justify-content-center">
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Company" asp-action="Index" asp-route-companyId="@Model.Company.Id">در یک نگاه</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Company" asp-action="About" asp-route-companyId="@Model.Company.Id">معرفی</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-controller="Company" asp-action="Opportunities" asp-route-companyId="@Model.Company.Id">
+            فرصت های شغلی
+            <span class="badge text-bg-secondary">4</span>
+        </a>
+    </li>
+</ul>
+@{
+    var o = Model.Opportunity;
+    var category = unit.Categories.Find(c => c.Id == o.CategoryId).First();
+    var province = unit.Provinces.Find(c => c.Id == o.ProvinceId).First();
+    var assignment = unit.Assignments.Find(c => c.Id == o.AssignmentId).First();
+    var experience = unit.Experiences.Find(c => c.Id == o.ExperienceId).First();
+    var minimumSalary = unit.MinimumSalaries.Find(c => c.Id == o.MinimumSalaryId).First();
+    var gender = unit.Genders.Find(c => c.Id == o.GenderId).First();
+    var militaryService = unit.MilitaryServices.Find(c => c.Id == o.MilitaryServiceId).First();
+    var degree = unit.Degrees.Find(c => c.Id == o.DegreeId).First();
+}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-8 border rounded p-5">
+            <h4>استخدام @o.Title</h4>
+            <hr />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="d-block fw-bold">دسته بندی شغلی</label>
+                        <p class="btn btn-dark disabled p-1">@category.Title</p>
+                    </div>
+                    <div class="col-6">
+                        <label class="d-block fw-bold">موقعیت مکانی</label>
+                        <p class="btn btn-dark disabled p-1">@province.Name</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="d-block fw-bold">
+                            نوع همکاری
+                        </label>
+                        <p class="btn btn-dark disabled p-1">@assignment.Title</p>
+                    </div>
+                    <div class="col-6">
+                        <label class="d-block fw-bold">حداقل سابقه کار</label>
+                        <p class="btn btn-dark disabled p-1">@experience.Title</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="d-block fw-bold">حقوق</label>
+                        <p class="btn btn-dark disabled p-1">@((minimumSalary.Title == null? ("از " + Jobdoon.Utilities.StringUtilities.Divide3DigitsByComma(minimumSalary.Amount.Value) + " تومان") : minimumSalary.Title))</p>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <h5>شرح موقعیت شغلی</h5>
+            <p>@Html.Raw(o.Description)</p>
+            <hr />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="d-block fw-bold">جنسیت</label>
+                        <p class="btn btn-dark disabled p-1">@gender.Title</p>
+                    </div>
+                    <div class="col-6">
+                        <label class="d-block fw-bold">
+                            وضعیت نظام وظیفه
+                        </label>
+                        <p class="btn btn-dark disabled p-1">@militaryService.Title</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="d-block fw-bold">
+                            حداقل مدرک تحصیلی
+                        </label>
+                        <p class="btn btn-dark disabled p-1">@degree.Title</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>

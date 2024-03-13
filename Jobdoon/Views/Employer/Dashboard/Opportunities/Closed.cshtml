@@ -38,7 +38,7 @@
                         <h5 class="card-title">@o.Title</h5>
                         <p class="card-text">@province.Name</p>
                         <p class="card-text">@assignment.Title</p>
-                        <p class="card-text">@((minSalary.Title) == null? $"از {minSalary.Value:n0} تومان" : minSalary.Title)</p>
+                        <p class="card-text">@((minSalary.Title) == null? $"از {minSalary.Amount:n0} تومان" : minSalary.Title)</p>
                         <form method="post" class="m-0 p-0">
                             <button asp-controller="Employer" asp-action="ActivateOpportunity"
                                     asp-route-opportunityId="@o.Id" class="btn btn-primary">

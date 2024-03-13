@@ -183,11 +183,11 @@ namespace Jobdoon.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("Amount")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Value")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

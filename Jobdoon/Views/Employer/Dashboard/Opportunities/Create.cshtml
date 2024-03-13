@@ -59,13 +59,13 @@
                         <select asp-for="MinimumSalaryId" class="form-select" id="minimumSalaryInput">
                             @foreach (var item in salaries)
                             {
-                                if (item.Value == null)
+                                if (item.Amount == null)
                                 {
                                     <option value="@item.Id">@item.Title</option>
                                 }
                                 else
                                 {
-                                    <option value="@item.Id">از @($"{item.Value:n0}") تومان</option>
+                                    <option value="@item.Id">از @($"{item.Amount:n0}") تومان</option>
                                 }
                             }
                         </select>

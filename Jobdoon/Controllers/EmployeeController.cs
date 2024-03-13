@@ -22,7 +22,7 @@ namespace Jobdoon.Controllers
                 Categories = unit.Categories.GetAll(),
                 Assignments = unit.Assignments.GetAll(),
                 Experiences = unit.Experiences.GetAll(),
-                UnspecifiedSalaries = unit.MinimumSalaries.GetAll()
+                MinimumSalaries = unit.MinimumSalaries.GetAll()
             });
         }
 
@@ -67,7 +67,7 @@ namespace Jobdoon.Controllers
                 Categories = unit.Categories.GetAll(),
                 Assignments = unit.Assignments.GetAll(),
                 Experiences = unit.Experiences.GetAll(),
-                UnspecifiedSalaries = unit.MinimumSalaries.GetAll()
+                MinimumSalaries = unit.MinimumSalaries.GetAll()
             });
         }
     }
