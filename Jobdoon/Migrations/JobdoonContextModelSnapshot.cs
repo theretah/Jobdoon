@@ -227,6 +227,9 @@ namespace Jobdoon.Migrations
                     b.Property<int>("GenderId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsClosed")
+                        .HasColumnType("bit");
+
                     b.Property<int>("MilitaryServiceId")
                         .HasColumnType("int");
 

@@ -15,11 +15,9 @@ namespace Jobdoon.DataAccess.Repositories
             this.context = context;
         }
 
-        public IEnumerable<Opportunity> FindIncluded(Expression<Func<Opportunity, bool>> predicate)
+        public void Update(Opportunity opportunity)
         {
-            return context.Opportunities.Where(predicate).Include(o => o.Assignment).Include(o => o.Category)
-                .Include(o => o.Company).Include(o => o.Experience).Include(o => o.Gender).Include(o => o.Degree)
-                .Include(o => o.MilitaryService).Include(o => o.MinimumSalary).Include(o => o.Province);
+            context.Opportunities.Update(opportunity);
         }
     }
 }

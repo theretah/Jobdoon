@@ -6,6 +6,7 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+        public bool IsClosed { get; set; }
 
         public Province Province { get; set; }
         public int ProvinceId { get; set; }

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Jobdoon.DataAccess.UnitOfWork;
 using Jobdoon.Models.Entities;
+using Jobdoon.Utilities;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

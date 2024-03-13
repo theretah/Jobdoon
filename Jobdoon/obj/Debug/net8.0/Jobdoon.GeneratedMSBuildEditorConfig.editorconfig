@@ -82,6 +82,38 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxPcHBvcnR1bml0aWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employee/Requests/Cancelled.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcUmVxdWVzdHNcQ2FuY2VsbGVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employee/Requests/Hired.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcUmVxdWVzdHNcSGlyZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employee/Requests/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcUmVxdWVzdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employee/Requests/InterviewAccepted.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcUmVxdWVzdHNcSW50ZXJ2aWV3QWNjZXB0ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employee/Requests/Reviewed.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcUmVxdWVzdHNcUmV2aWV3ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employee/Requests/Sent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcUmVxdWVzdHNcU2VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employee/Saved.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcU2F2ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/CSP2/Jobdoon/Jobdoon/Views/Employee/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcU2VhcmNoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/CSP2/Jobdoon/Jobdoon/Views/Employer/Dashboard/Company/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZXJcRGFzaGJvYXJkXENvbXBhbnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -116,10 +148,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/CSP2/Jobdoon/Jobdoon/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[E:/CSP2/Jobdoon/Jobdoon/Views/Search/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhcmNoXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/CSP2/Jobdoon/Jobdoon/Views/Shared/Components/CompanyHeader/Default.cshtml]

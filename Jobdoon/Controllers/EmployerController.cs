@@ -43,7 +43,7 @@ namespace Jobdoon.Controllers
         {
             ViewBag.Layout = "_EmployerDashboardLayout";
 
-            return View("Dashboard/Index");
+            return View("Dashboard/Opportunities/Index");
         }
 
         public IActionResult EditCompany(int? companyId)
@@ -158,6 +158,40 @@ namespace Jobdoon.Controllers
             unit.Complete();
 
             return RedirectToAction("Opportunities", "Company", new { companyId = companyId.Value });
+        }
+
+        [HttpPost]
+        public IActionResult CloseOpportunity(int opportunityId)
+        {
+            var opportunity = unit.Opportunities.Get(opportunityId);
+            opportunity.IsClosed = true;
+
+            unit.Opportunities.Update(opportunity);
+            unit.Complete();
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        public IActionResult ActivateOpportunity(int opportunityId)
+        {
+            var opportunity = unit.Opportunities.Get(opportunityId);
+            opportunity.IsClosed = false;
+
+            unit.Opportunities.Update(opportunity);
+            unit.Complete();
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        public IActionResult RemoveOpportunity(int opportunityId)
+        {
+            var opportunity = unit.Opportunities.Get(opportunityId);
+            unit.Opportunities.Remove(opportunity);
+            unit.Complete();
+
+            return RedirectToAction("Dashboard");
         }
     }
 }

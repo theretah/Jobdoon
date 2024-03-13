@@ -2,7 +2,7 @@
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
 @{
     var user = userManager.GetUserAsync(User).Result;
-    var opportunities = unit.Opportunities.FindIncluded(o => o.CompanyId == user.CompanyId).ToList();
+    var opportunities = unit.Opportunities.Find(o => (o.CompanyId == user.CompanyId) && (o.IsClosed == false)).ToList();
 }
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -15,7 +15,7 @@
                     <a asp-controller="Employer" asp-action="Opportunities" class="nav-link">همه آگهی ها</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active">اگهی های فعال</a>
+                    <a class="nav-link active" href="#">اگهی های فعال</a>
                 </li>
                 <li class="nav-item">
                     <a asp-controller="Employer" asp-action="ClosedOpportunities" class="nav-link">آگهی های بسته شده</a>
@@ -29,15 +29,34 @@
     <div class="row">
         @foreach (var o in opportunities)
         {
+            var province = unit.Provinces.Find(p => o.ProvinceId == p.Id).First();
+            var assignment = unit.Assignments.Find(p => o.AssignmentId == p.Id).First();
+            var minSalary = unit.MinimumSalaries.Find(p => o.MinimumSalaryId == p.Id).First();
             <div class="card mb-3 me-3" style="max-width: 420px;">
                 <div class="row g-0">
                     <div class="card-body">
                         <h5 class="card-title">@o.Title</h5>
-                        <p class="card-text">@o.Province.Name</p>
-                        <p class="card-text">@o.Assignment.Title</p>
-                        <p class="card-text">@((o.MinimumSalary.Title) == null? $"از {o.MinimumSalary.Value:n0} تومان" : o.MinimumSalary.Title)</p>
-                        <p class="card-text float-end"><small class="text-muted">@o.Date.ToString("dd/MMMM/yyyy")</small></p>
+                        <p class="card-text">@province.Name</p>
+                        <p class="card-text">@assignment.Title</p>
+                        <p class="card-text">@((minSalary.Title) == null? $"از {minSalary.Value:n0} تومان" : minSalary.Title)</p>
+                        <form method="post" class="m-0 p-0">
+                            <button asp-controller="Employer" asp-action="CloseOpportunity"
+                                    asp-route-opportunityId="@o.Id" class="btn btn-secondary">
+                                بستن
+                            </button>
+                            <button asp-controller="Employer" asp-action="EditOpportunity"
+                                    asp-route-opportunityId="@o.Id" class="btn btn-secondary">
+                                ویرایش
+                            </button>
+                            <button asp-controller="Employer" asp-action="RemoveOpportunity"
+                                    asp-route-opportunityId="@o.Id" class="btn btn-danger">
+                                حذف
+                            </button>
+                        </form>
                         <br />
+                        <p class="card-text float-end">
+                            <small class="text-muted">منتشر شده در @Jobdoon.Utilities.PersianCalendarUtilities.YearMonthDate(o.Date)</small>
+                        </p>
                     </div>
                 </div>
             </div>
