@@ -43,7 +43,7 @@
             <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
             <select class="form-select" id="inlineFormSelectPref">
                 <option selected>همه ی دسته بندی ها</option>
-                < @foreach (var c in Model.Categories)
+                @foreach (var c in Model.JobCategories)
                 {
                     <option value="@c.Id">@c.Title</option>
                 }
@@ -65,7 +65,7 @@
             </button>
             <div class="collapse border p-2" id="jobCategories">
                 <form action="/" method="post">
-                    @foreach (var c in Model.Categories)
+                    @foreach (var c in Model.JobCategories)
                     {
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">

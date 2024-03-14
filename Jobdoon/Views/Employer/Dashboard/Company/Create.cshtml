@@ -2,7 +2,7 @@
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
 @{
     var personnelCounts = unit.PersonnelCounts.GetAll();
-    var categories = unit.Categories.GetAll();
+    var categories = unit.CompanyCategories.GetAll();
 
 }
 <div class="container mt-5">
@@ -21,12 +21,20 @@
                     <input asp-for="Company.LatinName" class="form-control" id="latinNameInput" placeholder="مثلا Jobdoon">
                 </div>
                 <div class="mb-3">
-                    <label for="logoInput" class="form-label">لوگوی شرکت</label>
+                    <label for="logoInput" class="form-label">تصویر لوگوی شرکت</label>
                     <input asp-for="LogoImageFile" class="form-control" id="logoInput" accept="image/*">
                 </div>
                 <div class="mb-3">
+                    <label for="bannerInput" class="form-label">تصویر بنر شرکت</label>
+                    <input asp-for="BannerImageFile" class="form-control" id="bannerInput" accept="image/*">
+                </div>
+                <div class="mb-3">
+                    <label for="buildingInput" class="form-label">تصویر نمای شرکت</label>
+                    <input asp-for="BuildingImageFile" class="form-control" id="buildingInput" accept="image/*">
+                </div>
+                <div class="mb-3">
                     <label for="category" class="form-label">حوزه فعالیت شرکت</label>
-                    <select asp-for="Company.CategoryId" class="form-select" id="category">
+                    <select asp-for="Company.CompanyCategoryId" class="form-select" id="category">
                         @foreach (var c in categories)
                         {
                             <option value="@c.Id">@c.Title</option>

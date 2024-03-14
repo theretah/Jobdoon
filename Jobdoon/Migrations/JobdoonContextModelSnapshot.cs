@@ -39,23 +39,6 @@ namespace Jobdoon.Migrations
                     b.ToTable("Assignments");
                 });
 
-            modelBuilder.Entity("Jobdoon.Models.Entities.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("Jobdoon.Models.Entities.Company", b =>
                 {
                     b.Property<int>("Id")
@@ -68,7 +51,13 @@ namespace Jobdoon.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<byte[]>("BannerImage")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("BuildingImage")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("CompanyCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("EmployerId")
@@ -100,11 +89,28 @@ namespace Jobdoon.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CompanyCategoryId");
 
                     b.HasIndex("PersonnelCountId");
 
                     b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("Jobdoon.Models.Entities.CompanyCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CompanyCategories");
                 });
 
             modelBuilder.Entity("Jobdoon.Models.Entities.Degree", b =>
@@ -158,6 +164,23 @@ namespace Jobdoon.Migrations
                     b.ToTable("Genders");
                 });
 
+            modelBuilder.Entity("Jobdoon.Models.Entities.JobCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JobCategories");
+                });
+
             modelBuilder.Entity("Jobdoon.Models.Entities.MilitaryService", b =>
                 {
                     b.Property<int>("Id")
@@ -205,9 +228,6 @@ namespace Jobdoon.Migrations
                     b.Property<int>("AssignmentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
@@ -229,6 +249,9 @@ namespace Jobdoon.Migrations
 
                     b.Property<bool>("IsClosed")
                         .HasColumnType("bit");
+
+                    b.Property<int>("JobCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<int>("MilitaryServiceId")
                         .HasColumnType("int");
@@ -252,6 +275,8 @@ namespace Jobdoon.Migrations
                     b.HasIndex("DegreeId");
 
                     b.HasIndex("ExperienceId");
+
+                    b.HasIndex("JobCategoryId");
 
                     b.HasIndex("MilitaryServiceId");
 
@@ -608,10 +633,10 @@ namespace Jobdoon.Migrations
 
             modelBuilder.Entity("Jobdoon.Models.Entities.Company", b =>
                 {
-                    b.HasOne("Jobdoon.Models.Entities.Category", "Category")
+                    b.HasOne("Jobdoon.Models.Entities.CompanyCategory", "CompanyCategory")
                         .WithMany("Companies")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("CompanyCategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Jobdoon.Models.Entities.PersonnelCount", "PersonnelCount")
@@ -620,7 +645,7 @@ namespace Jobdoon.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("CompanyCategory");
 
                     b.Navigation("PersonnelCount");
                 });
@@ -640,12 +665,6 @@ namespace Jobdoon.Migrations
                     b.HasOne("Jobdoon.Models.Entities.Degree", "Degree")
                         .WithMany("Opportunities")
                         .HasForeignKey("DegreeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Jobdoon.Models.Entities.Category", "Category")
-                        .WithMany("Opportunities")
-                        .HasForeignKey("ExperienceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -673,6 +692,12 @@ namespace Jobdoon.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Jobdoon.Models.Entities.JobCategory", "JobCategory")
+                        .WithMany("Opportunities")
+                        .HasForeignKey("JobCategoryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("Jobdoon.Models.Entities.MilitaryService", "MilitaryService")
                         .WithMany("Opportunities")
                         .HasForeignKey("MilitaryServiceId")
@@ -681,8 +706,6 @@ namespace Jobdoon.Migrations
 
                     b.Navigation("Assignment");
 
-                    b.Navigation("Category");
-
                     b.Navigation("Company");
 
                     b.Navigation("Degree");
@@ -690,6 +713,8 @@ namespace Jobdoon.Migrations
                     b.Navigation("Experience");
 
                     b.Navigation("Gender");
+
+                    b.Navigation("JobCategory");
 
                     b.Navigation("MilitaryService");
 
@@ -827,19 +852,17 @@ namespace Jobdoon.Migrations
                     b.Navigation("Opportunities");
                 });
 
-            modelBuilder.Entity("Jobdoon.Models.Entities.Category", b =>
-                {
-                    b.Navigation("Companies");
-
-                    b.Navigation("Opportunities");
-                });
-
             modelBuilder.Entity("Jobdoon.Models.Entities.Company", b =>
                 {
                     b.Navigation("Employer")
                         .IsRequired();
 
                     b.Navigation("Opportunities");
+                });
+
+            modelBuilder.Entity("Jobdoon.Models.Entities.CompanyCategory", b =>
+                {
+                    b.Navigation("Companies");
                 });
 
             modelBuilder.Entity("Jobdoon.Models.Entities.Degree", b =>
@@ -858,6 +881,11 @@ namespace Jobdoon.Migrations
                 {
                     b.Navigation("Employees");
 
+                    b.Navigation("Opportunities");
+                });
+
+            modelBuilder.Entity("Jobdoon.Models.Entities.JobCategory", b =>
+                {
                     b.Navigation("Opportunities");
                 });
 

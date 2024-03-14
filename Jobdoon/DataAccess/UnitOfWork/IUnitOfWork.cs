@@ -5,7 +5,8 @@ namespace Jobdoon.DataAccess.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         IAssignmentRepository Assignments { get; }
-        ICategoryRepository Categories { get; }
+        IJobCategoryRepository JobCategories { get; }
+        ICompanyCategoryRepository CompanyCategories { get; }
         ICompanyRepository Companies { get; }
         IDegreeRepository Degrees { get; }
         IExperienceRepository Experiences { get; }

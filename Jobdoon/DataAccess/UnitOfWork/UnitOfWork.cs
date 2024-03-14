@@ -12,7 +12,8 @@ namespace Jobdoon.DataAccess.UnitOfWork
         {
             this.context = context;
             Assignments = new AssignmentRepository(context);
-            Categories = new CategoryRepository(context);
+            CompanyCategories = new CompanyCategoryRepository(context);
+            JobCategories = new JobCategoryRepository(context);
             Companies = new CompanyRepository(context);
             Degrees = new DegreeRepository(context);
             Experiences = new ExperienceRepository(context);
@@ -29,7 +30,9 @@ namespace Jobdoon.DataAccess.UnitOfWork
 
         public IAssignmentRepository Assignments { get; private set; }
 
-        public ICategoryRepository Categories { get; private set; }
+        public IJobCategoryRepository JobCategories { get; private set; }
+
+        public ICompanyCategoryRepository CompanyCategories { get; private set; }
 
         public ICompanyRepository Companies { get; private set; }
 

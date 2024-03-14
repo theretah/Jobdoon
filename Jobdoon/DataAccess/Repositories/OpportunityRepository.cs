@@ -15,6 +15,11 @@ namespace Jobdoon.DataAccess.Repositories
             this.context = context;
         }
 
+        public IEnumerable<Opportunity> GetLatest()
+        {
+            return context.Opportunities.OrderByDescending(o => o.Date).ToList();
+        }
+
         public void Update(Opportunity opportunity)
         {
             context.Opportunities.Update(opportunity);

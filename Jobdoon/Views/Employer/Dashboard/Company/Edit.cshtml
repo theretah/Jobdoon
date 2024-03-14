@@ -2,7 +2,7 @@
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
 @{
     var personnelCounts = unit.PersonnelCounts.GetAll();
-    var categories = unit.Categories.GetAll();
+    var categories = unit.CompanyCategories.GetAll();
 
 }
 <div class="container mt-5">
@@ -20,17 +20,43 @@
                     <label for="latinNameInput" class="form-label">نام لاتین شرکت</label>
                     <input asp-for="Company.LatinName" class="form-control" id="latinNameInput" placeholder="مثلا Jobdoon">
                 </div>
+                <hr />
                 <div class="mb-3">
                     <label for="currentLogoImage" class="form-label d-block">لوگوی کنونی شرکت</label>
                     <img src="@Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(Model.Company.LogoImage)" id="currentLogoImage" style="height:100px;width:100px;">
                 </div>
                 <div class="mb-3">
-                    <label for="logoInput" class="form-label">لوگوی جدید شرکت</label>
+                    <label for="logoInput" class="form-label">انتخاب لوگوی جدید شرکت</label>
                     <input asp-for="LogoImageFile" class="form-control" id="logoInput" accept="image/*">
                 </div>
+                <hr />
+                @if (Model.Company.BannerImage != null)
+                {
+                    <div class="mb-3">
+                        <label for="currentLogoImage" class="form-label d-block">بنر کنونی شرکت</label>
+                        <img src="@Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(Model.Company.BannerImage)" id="currentLogoImage" style="height:100px;width:100px;">
+                    </div>
+                }
+                <div class="mb-3">
+                    <label for="bannerInput" class="form-label">انتخاب بنر جدید شرکت</label>
+                    <input asp-for="BannerImageFile" class="form-control" id="bannerInput" accept="image/*">
+                </div>
+                <hr />
+                @if (Model.Company.BannerImage != null)
+                {
+                    <div class="mb-3">
+                        <label for="currentLogoImage" class="form-label d-block">نمای کنونی شرکت</label>
+                        <img src="@Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(Model.Company.BuildingImage)" id="currentLogoImage" style="height:100px;width:100px;">
+                    </div>
+                }
+                <div class="mb-3">
+                    <label for="buildingInput" class="form-label">انتخاب نمای جدید شرکت</label>
+                    <input asp-for="BuildingImageFile" class="form-control" id="buildingInput" accept="image/*">
+                </div>
+                <hr />
                 <div class="mb-3">
                     <label for="category" class="form-label">حوزه فعالیت شرکت</label>
-                    <select asp-for="Company.CategoryId" class="form-select" id="category">
+                    <select asp-for="Company.CompanyCategoryId" class="form-select" id="category">
                         @foreach (var c in categories)
                         {
                             <option value="@c.Id">@c.Title</option>

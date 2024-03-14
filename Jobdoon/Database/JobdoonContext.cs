@@ -20,7 +20,8 @@ namespace Jobdoon.Database
         public DbSet<Opportunity> Opportunities { get; set; }
         public DbSet<Company> Companies { get; set; }
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<JobCategory> JobCategories { get; set; }
+        public DbSet<CompanyCategory> CompanyCategories { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<MilitaryService> MilitaryServices { get; set; }

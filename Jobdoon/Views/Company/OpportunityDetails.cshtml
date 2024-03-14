@@ -17,7 +17,7 @@
 </ul>
 @{
     var o = Model.Opportunity;
-    var category = unit.Categories.Find(c => c.Id == o.CategoryId).First();
+    var category = unit.JobCategories.Find(c => c.Id == o.JobCategoryId).First();
     var province = unit.Provinces.Find(c => c.Id == o.ProvinceId).First();
     var assignment = unit.Assignments.Find(c => c.Id == o.AssignmentId).First();
     var experience = unit.Experiences.Find(c => c.Id == o.ExperienceId).First();

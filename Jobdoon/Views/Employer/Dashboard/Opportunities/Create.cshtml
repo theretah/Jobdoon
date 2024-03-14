@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "ایجاد آگهی جدید | جاب دون";
 
-    var categories = unit.Categories.GetAll();
+    var categories = unit.JobCategories.GetAll();
     var provinces = unit.Provinces.GetAll();
     var assignments = unit.Assignments.GetAll();
     var salaries = unit.MinimumSalaries.GetAll();
@@ -27,7 +27,7 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="categoryInput" class="form-label">دسته بندی شغلی</label>
-                        <select asp-for="CategoryId" class="form-select" id="categoryInput">
+                        <select asp-for="JobCategoryId" class="form-select" id="categoryInput">
                             @foreach (var item in categories)
                             {
                                 <option value="@item.Id">@item.Title</option>

@@ -14,7 +14,7 @@ namespace Jobdoon.DbContextConfiguration
             builder.HasOne(o => o.Province)
                .WithMany(p => p.Opportunities);
 
-            builder.HasOne(o => o.Category)
+            builder.HasOne(o => o.JobCategory)
                .WithMany(c => c.Opportunities);
 
             builder.HasOne(o => o.Assignment)

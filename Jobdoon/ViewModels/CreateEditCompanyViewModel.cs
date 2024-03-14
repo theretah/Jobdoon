@@ -1,5 +1,4 @@
 ﻿using Jobdoon.Models.Entities;
-using System.Drawing;
 
 namespace Jobdoon.ViewModels
 {
@@ -7,5 +6,7 @@ namespace Jobdoon.ViewModels
     {
         public Company Company { get; set; }
         public IFormFile LogoImageFile { get; set; }
+        public IFormFile BannerImageFile { get; set; }
+        public IFormFile BuildingImageFile { get; set; }
     }
 }

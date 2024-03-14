@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using NuGet.Versioning;
 using System.ComponentModel.Design;
 using System.Net;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Jobdoon.Controllers
 {
@@ -52,6 +53,7 @@ namespace Jobdoon.Controllers
 
             if (companyId == null)
             {
+                ViewBag.Layout = "_Layout";
                 return View("Dashboard/Company/Create", CreateCompanyViewModel);
             }
 
@@ -70,7 +72,7 @@ namespace Jobdoon.Controllers
             var company = unit.Companies.Get(companyId);
             company.PersianName = EditCompanyViewModel.Company.PersianName;
             company.LatinName = EditCompanyViewModel.Company.LatinName;
-            company.CategoryId = EditCompanyViewModel.Company.CategoryId;
+            company.CompanyCategoryId = EditCompanyViewModel.Company.CompanyCategoryId;
             company.PersonnelCountId = EditCompanyViewModel.Company.PersonnelCountId;
             company.Address = EditCompanyViewModel.Company.Address;
             company.Telephone = EditCompanyViewModel.Company.Telephone;
@@ -78,6 +80,14 @@ namespace Jobdoon.Controllers
             if (EditCompanyViewModel.LogoImageFile != null)
             {
                 company.LogoImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.LogoImageFile);
+            }
+            if (EditCompanyViewModel.BuildingImageFile != null)
+            {
+                company.BuildingImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BuildingImageFile);
+            }
+            if (EditCompanyViewModel.BannerImageFile != null)
+            {
+                company.BannerImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BannerImageFile);
             }
 
             unit.Companies.Update(company);
@@ -96,12 +106,14 @@ namespace Jobdoon.Controllers
                 EmployerId = user.Id,
                 PersianName = CreateCompanyViewModel.Company.PersianName,
                 LatinName = CreateCompanyViewModel.Company.LatinName,
-                CategoryId = CreateCompanyViewModel.Company.CategoryId,
+                CompanyCategoryId = CreateCompanyViewModel.Company.CompanyCategoryId,
                 PersonnelCountId = CreateCompanyViewModel.Company.PersonnelCountId,
                 Address = CreateCompanyViewModel.Company.Address,
                 Telephone = CreateCompanyViewModel.Company.Telephone,
                 Website = CreateCompanyViewModel.Company.Website,
-                LogoImage = ImageUtilities.ImageFileToByteArray(CreateCompanyViewModel.LogoImageFile)
+                LogoImage = ImageUtilities.ImageFileToByteArray(CreateCompanyViewModel.LogoImageFile),
+                BannerImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BannerImageFile),
+                BuildingImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BuildingImageFile),
             });
             unit.Complete();
 
@@ -146,7 +158,7 @@ namespace Jobdoon.Controllers
                 Description = CreateOpportunityModel.Description,
                 Date = DateTime.Now,
                 AssignmentId = CreateOpportunityModel.AssignmentId,
-                CategoryId = CreateOpportunityModel.CategoryId,
+                JobCategoryId = CreateOpportunityModel.JobCategoryId,
                 MinimumSalaryId = CreateOpportunityModel.MinimumSalaryId,
                 MilitaryServiceId = CreateOpportunityModel.MilitaryServiceId,
                 ExperienceId = CreateOpportunityModel.ExperienceId,

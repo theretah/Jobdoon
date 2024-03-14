@@ -14,8 +14,8 @@
         public Degree Degree { get; set; }
         public int DegreeId { get; set; }
 
-        public Category Category { get; set; }
-        public int CategoryId { get; set; }
+        public JobCategory JobCategory { get; set; }
+        public int JobCategoryId { get; set; }
 
         public Assignment Assignment { get; set; }
         public int AssignmentId { get; set; }

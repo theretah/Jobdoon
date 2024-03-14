@@ -19,31 +19,6 @@
     </h3>
 
     <br />
-    @if (!profileImageIsNull && !userIsEmployer)
-    {
-        <form asp-controller="Account" asp-action="RemoveProfilePhoto" class="mb-3" method="post">
-            <span class="h5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-                </svg>
-                پروفایل
-            </span>
-            @if (!userIsEmployer)
-            {
-                <div class="p-5 border rounded">
-                    <div class="mb-3">
-                        <label for="currentProfileImage" class="form-label">تصویر پروفایل کنونی</label>
-                        <img class="form-control rounded-circle object-fit-contain p-0"
-                             src="@ImageUtilities.GenerateImageDataUrl(Model.AppUser.ProfileImage)"
-                             id="currentProfileImage" style="width:100px; height:100px;" />
-                    </div>
-                    <div class="mb-3">
-                        <input type="submit" class="btn btn-danger" value="حذف تصویر پروفایل" />
-                    </div>
-                </div>
-            }
-        </form>
-    }
 
     <form class="mb-5" asp-controller="Account" asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
         <span class="h5">
@@ -143,14 +118,36 @@
             اطلاعات حساب
         </span>
         <div class="p-5 border rounded">
-            @if (profileImageIsNull && !userIsEmployer)
+            @if (!userIsEmployer)
             {
-                <div class="mb-3">
-                    <label for="profileInput" class="form-label">انتخاب تصویر پروفایل</label>
-                    <input asp-for="ProfileImageFile" class="form-control" id="profileInput">
-                </div>
+                if (profileImageIsNull)
+                {
+                    <div class="mb-3">
+                        <label for="profileInput" class="form-label">انتخاب تصویر پروفایل</label>
+                        <input asp-for="ProfileImageFile" class="form-control" id="profileInput">
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <span class="h5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                            </svg>
+                            پروفایل
+                        </span>
+                        <div class="mb-3">
+                            <label for="currentProfileImage" class="form-label">تصویر پروفایل کنونی</label>
+                            <img class="form-control rounded-circle object-fit-contain p-0"
+                                 src="@ImageUtilities.GenerateImageDataUrl(Model.AppUser.ProfileImage)"
+                                 id="currentProfileImage" style="width:100px; height:100px;" />
+                        </div>
+                        <div class="mb-3">
+                            <button asp-controller="Account" asp-action="RemoveProfilePhoto" class="btn btn-danger">حذف تصویر پروفایل</button>
+                        </div>
+                    </div>
+                }
             }
-
             <div class="mb-3">
                 <label for="emailInput" class="form-label">آدرس ایمیل</label>
                 <input asp-for="AppUser.Email" class="form-control" id="emailInput" placeholder="name@example.com">

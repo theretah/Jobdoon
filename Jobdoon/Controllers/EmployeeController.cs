@@ -19,7 +19,7 @@ namespace Jobdoon.Controllers
             return View(new SearchViewModel
             {
                 Provinces = unit.Provinces.GetAll(),
-                Categories = unit.Categories.GetAll(),
+                JobCategories = unit.JobCategories.GetAll(),
                 Assignments = unit.Assignments.GetAll(),
                 Experiences = unit.Experiences.GetAll(),
                 MinimumSalaries = unit.MinimumSalaries.GetAll()
@@ -64,7 +64,7 @@ namespace Jobdoon.Controllers
             return View(new SearchViewModel
             {
                 Provinces = unit.Provinces.GetAll(),
-                Categories = unit.Categories.GetAll(),
+                JobCategories = unit.JobCategories.GetAll(),
                 Assignments = unit.Assignments.GetAll(),
                 Experiences = unit.Experiences.GetAll(),
                 MinimumSalaries = unit.MinimumSalaries.GetAll()

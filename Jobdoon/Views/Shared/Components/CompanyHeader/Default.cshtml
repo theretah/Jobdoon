@@ -1,7 +1,7 @@
 ﻿@model Jobdoon.Models.Entities.Company
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
 @{
-    var category = unit.Categories.Find(c => c.Id == Model.CategoryId).First();
+    var category = unit.CompanyCategories.Find(c => c.Id == Model.CompanyCategoryId).First();
     var personnelCount = unit.PersonnelCounts.Find(c => c.Id == Model.PersonnelCountId).First();
 }
 <div class="container-fluid">
