@@ -36,18 +36,20 @@
             {
                 <div class="mb-3">
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-2">
                             <label for="day" class="form-label">روز تولد</label>
                             <select asp-for="BirthDay" class="form-select" id="day">
+                                <option value="0">انتخاب کنید</option>
                                 @for (int i = 1; i <= 31; i++)
                                 {
                                     <option value="@i">@i</option>
                                 }
                             </select>
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             <label for="month" class="form-label">ماه تولد</label>
                             <select asp-for="BirthMonth" class="form-select" id="month">
+                                <option value="0">انتخاب کنید</option>
                                 @for (int i = 1; i <= 12; i++)
                                 {
                                     <option value="@i">@i</option>
@@ -57,6 +59,7 @@
                         <div class="col-2">
                             <label for="year" class="form-label">سال تولد</label>
                             <select asp-for="BirthYear" class="form-select" id="year">
+                                <option value="0">انتخاب کنید</option>
                                 @for (int i = 1402; i >= 1300; i--)
                                 {
                                     <option value="@i">@i</option>

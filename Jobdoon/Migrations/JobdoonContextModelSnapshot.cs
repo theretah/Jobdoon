@@ -64,6 +64,9 @@ namespace Jobdoon.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IntroductoryText")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LatinName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

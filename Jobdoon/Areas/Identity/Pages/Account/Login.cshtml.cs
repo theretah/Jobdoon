@@ -52,7 +52,7 @@ namespace Jobdoon.Areas.Identity.Pages.Account
         [BindProperty]
         public bool RememberMe { get; set; }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -67,10 +67,18 @@ namespace Jobdoon.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            var user = await userManager.FindByEmailAsync(Email);
+            if (user.IsEmployer == true)
+            {
+                ModelState.AddModelError(string.Empty, "برای ورود با حساب کارفرمایی به بخش کارفرمایان مراجعه کنید.");
+                return await OnGetAsync();
+            }
             returnUrl ??= Url.Content("~/");
 
             //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

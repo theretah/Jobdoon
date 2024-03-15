@@ -21,6 +21,11 @@
                     <input asp-for="Company.LatinName" class="form-control" id="latinNameInput" placeholder="مثلا Jobdoon">
                 </div>
                 <div class="mb-3">
+                    <label for="introductoryTextInput" class="form-label">معرفی شرکت در چند سطر</label>
+                    <textarea asp-for="Company.IntroductoryText" rows="10" class="form-control" id="introductoryTextInput" placeholder="خلاصه ای از توضیحات راجع به شرکت. این توضیحات میتوانند تاریخچه ای کوتاه از شرکت، راز موفقیت یا ماندگاری شرکت، و یا ویژگی هایی باشند که لازم است کارجویان بدانند.">
+                    </textarea>
+                </div>
+                <div class="mb-3">
                     <label for="logoInput" class="form-label">تصویر لوگوی شرکت</label>
                     <input asp-for="LogoImageFile" class="form-control" id="logoInput" accept="image/*">
                 </div>

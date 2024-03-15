@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jobdoon")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40631283f37d5a532e155f68afdc5c51df23d48c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12445b1d2035b2a2ca66ac1dbe16b4dfe7351696")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jobdoon")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jobdoon")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

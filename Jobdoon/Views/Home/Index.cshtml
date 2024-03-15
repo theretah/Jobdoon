@@ -1,13 +1,17 @@
 ﻿@model Jobdoon.ViewModels.SearchViewModel
+@using Jobdoon.Utilities;
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@inject Microsoft.AspNetCore.Identity.SignInManager<Jobdoon.Models.Entities.AppUser> signInManager
 @{
     ViewData["Title"] = "استخدام | آگهی استخدام | سایت کاریابی | جاب دون";
     var top7Companies = unit.Companies.GetTopCompanies().Take(7);
+    var opportunitiesCount = StringUtilities.Divide3DigitsByComma(unit.Opportunities.GetAll().Count());
+    var companiesCount = StringUtilities.Divide3DigitsByComma(unit.Companies.GetAll().Count());
 }
 @*Search banner*@
 <div class="container-fluid bg-gradient bg-primary bg-opacity-75 py-5">
     <div class="container text-center">
-        <h3 class="text-light">۲۳,۲۹۷ آگهی استخدام فعال در ۹,۴۰۷ شرکت ایرانی</h3>
+        <h3 class="text-light">@opportunitiesCount آگهی استخدام فعال در @companiesCount شرکت</h3>
         <p class="text-light">
             جاب دون: سامانه کاریابی آنلاین با بیشترین تعداد آگهی استخدام در ایران
         </p>
@@ -43,7 +47,12 @@
         </form>
     </div>
     <div class="container text-center mt-2">
-        <button class="btn text-white" href="#">مشاهده همه آگهی‌های استخدام</button>
+        <a asp-controller="Employee" asp-action="Search" class="btn text-white" >
+            مشاهده همه آگهی‌های استخدام
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+            </svg>
+        </a>
     </div>
 </div>
 
@@ -57,7 +66,7 @@
                     <img src="@Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(c.LogoImage)" alt="..." style="width:90px; height:90px;">
                     <div class="card-body">
                         <p class="card-title text-secondary">@c.Opportunities.Count() فرصت شغلی</p>
-                        <a href="#" class="card-text text-decoration-none">@c.PersianName</a>
+                        <a asp-controller="Company" asp-action="Index" asp-route-companyId="@c.Id" class="card-text text-decoration-none">@c.PersianName</a>
                     </div>
                 </div>
             }
@@ -65,24 +74,27 @@
     </div>
 
     @*Registration invite*@
-    <div class="row align-items-center bg-light mt-5 py-3 rounded">
-        <div class="col-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-            </svg>
-            همین حالا در جاب دون ثبت نام کن و دنبال شغل مورد علاقه ات باش.
+    @if (!signInManager.IsSignedIn(User))
+    {
+        <div class="row align-items-center bg-light mt-5 py-3 rounded">
+            <div class="col-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                </svg>
+                همین حالا در جاب دون ثبت نام کن و دنبال شغل مورد علاقه ات باش.
+            </div>
+            <div class="col-6">
+                کارفرما هستید؟
+                <span>
+                    <a asp-controller="Employer" class="text-decoration-none">ورود به بخش کارفرمایان</a>
+                </span>
+                |
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary w-25">ثبت نام کارجو</a>
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-primary w-25">ورود کارجو</a>
+            </div>
         </div>
-        <div class="col-6">
-            کارفرما هستید؟
-            <span>
-                <a asp-controller="Employer" class="text-decoration-none">ورود به بخش کارفرمایان</a>
-            </span>
-            |
-            <button type="button" class="btn btn-primary w-25">ثبت نام کارجو</button>
-            <button type="button" class="btn btn-outline-primary w-25">ورود کارجو</button>
-        </div>
-    </div>
+    }
 
     @*Latest opportunities*@
     <div class="row mt-5">
@@ -121,7 +133,7 @@
                                         <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z" />
                                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1" />
                                     </svg>
-                                    قرارداد @assignment.Title (@(minSalary.Title==null? "حقوق از " +Jobdoon.Utilities.StringUtilities.Divide3DigitsByComma(minSalary.Amount.Value) + " تومان" : "حقوق " + minSalary.Title ))
+                                    قرارداد @assignment.Title (@(minSalary.Title==null? ("حقوق از " + Jobdoon.Utilities.StringUtilities.Divide3DigitsByComma(minSalary.Amount.Value) + " تومان") : ("حقوق " + minSalary.Title) ))
                                 </p>
                                 <p class="card-text float-end"><small class="text-muted">@Jobdoon.Utilities.PersianCalendarUtilities.YearMonthDate(o.Date)</small></p>
                                 <br />
@@ -133,6 +145,51 @@
         }
     </div>
 
+    @*How to start*@
+    <div class="row mt-5 bg-light rounded p-5">
+        <h5 class="text-center">از کجا شروع کنم؟</h5>
+        <hr />
+        <div class="col-3">
+            <p class="fw-bold">ثبت نام در جاب دون</p>
+            <p class="text-dark-emphasis">میتونی به سادگی با گوگل، لینکدین یا ایمیل‌های دیگه ثبت نام کنی یا اگر قبلا حساب کاربری داشتی وارد شی</p>
+            <a asp-area="Identity" asp-page="/Account/Register" class="text-decoration-none fw-bold">
+                ثبت نام
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                </svg>
+            </a>
+        </div>
+        <div class="col-3">
+            <p class="fw-bold">ساخت یا آپلود رزومه</p>
+            <p class="text-dark-emphasis">با رزومه‌ساز استاندارد جاب دون در کمترین زمان رزومه‌ات رو بساز یا اگر فایل رزومه‌ی آماده داری آپلود کن</p>
+            <a href="#" class="text-decoration-none fw-bold">
+                ساخت رزومه
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                </svg>
+            </a>
+        </div>
+        <div class="col-3">
+            <p class="fw-bold">جستجوی مشاغل</p>
+            <p class="text-dark-emphasis">می‌تونی عنوان شغلی یا نام شرکتی که می‌خوای رو در قسمت جستجو وارد کنی و آگهی‌ها رو ببینی</p>
+            <a  asp-controller="Employee" asp-action="Search" class="text-decoration-none fw-bold">
+                جستجو در مشاغل
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                </svg>
+            </a>
+        </div>
+        <div class="col-3">
+            <p class="fw-bold">ارسال درخواست شغلی</p>
+            <p class="text-dark-emphasis">جزییات آگهی رو با دقت بخون و اگر شرایطش با سابقه شغلیت هماهنگ بود، رزومه‌ات رو براشون ارسال کن</p>
+            <a href="#" class="text-decoration-none fw-bold">
+                سوالات متداول کارجویان
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+                </svg>
+            </a>
+        </div>
+    </div>
     @*Popular companies*@
     <div class="row mt-5">
         <h3>آشنایی با شرکت ها</h3>
@@ -156,14 +213,14 @@
                             </div>
                         </div>
                     </div>
-                    <img src="@buildingImage" class="card-img-top w-100" alt="...">
+                    <img src="@buildingImage" class="card-img w-100" alt="...">
                     <div class="card-body">
                         <p class="card-text">خلاصه ای از توضیحات راجع به شرکت. این توضیحات میتوانند تاریخچه ای کوتاه از شرکت، راز موفقیت یا ماندگاری شرکت، و یا ویژگی هایی باشند که لازم است کارجویان بدانند.</p>
                         <hr />
                     </div>
                     <div class="card-body">
                         <span class="card-link bg-success rounded p-1 text-light">@c.Opportunities.Count() شغل فعال</span>
-                        <a asp-controller="Company" asp-action="Index" asp-route-companyId="@c.Id" class="card-link text-decoration-none float-end">
+                        <a asp-controller="Company" asp-action="Index" asp-route-companyId="@c.Id" class="card-link text-decoration-none float-end fw-bold">
                             صفحه شرکت
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                 <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />

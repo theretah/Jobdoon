@@ -1,5 +1,6 @@
 ﻿using Jobdoon.DataAccess.UnitOfWork;
 using Jobdoon.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jobdoon.Controllers
@@ -26,38 +27,50 @@ namespace Jobdoon.Controllers
             });
         }
 
+        [Authorize]
         public IActionResult Requests()
         {
             ViewBag.Layout = "_Layout";
             return View("Requests/Index");
         }
+
+        [Authorize]
         public IActionResult Cancelled()
         {
             ViewBag.Layout = "_Layout";
             return View("Requests/Cancelled");
 
         }
+
+        [Authorize]
         public IActionResult Hired()
         {
             ViewBag.Layout = "_Layout";
             return View("Requests/Hired");
         }
+
+        [Authorize]
         public IActionResult InterviewAccepted()
         {
             ViewBag.Layout = "_Layout";
             return View("Requests/InterviewAccepted");
         }
+
+        [Authorize]
         public IActionResult Reviewed()
         {
             ViewBag.Layout = "_Layout";
             return View("Requests/Reviewed");
         }
+
+        [Authorize]
         public IActionResult Sent()
         {
             ViewBag.Layout = "_Layout";
             return View("Requests/Sent");
         }
 
+        [Authorize]
         public IActionResult Saved()
         {
             ViewBag.Layout = "_Layout";

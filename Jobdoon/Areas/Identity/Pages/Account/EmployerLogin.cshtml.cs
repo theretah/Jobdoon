@@ -51,14 +51,16 @@ namespace Jobdoon.Areas.Identity.Pages.Account
         [BindProperty]
         public bool RememberMe { get; set; }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
+            ViewData["Layout"] = "_EmployerAccountLayout";
             ViewData["AccountLayout"] = "EmployerAccount";
             ViewData["EmployerAccount"] = "Login";
+
             returnUrl ??= Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
@@ -67,10 +69,20 @@ namespace Jobdoon.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            var user = await userManager.FindByEmailAsync(Email);
+            if (user.IsEmployer == false)
+            {
+                ModelState.AddModelError(string.Empty, "ورود از این بخش فقط با حساب کارفرمایی امکان پذیر است.");
+
+                return await OnGetAsync();
+            }
+
             returnUrl ??= Url.Content("~/");
             if (ModelState.IsValid)
             {

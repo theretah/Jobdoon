@@ -36,7 +36,7 @@ namespace Jobdoon.Controllers
                 AppUser = user
             };
 
-            if (user.IsEmployer)
+            if (user.IsEmployer || Account.AppUser.BirthDate == null)
             {
                 return View(Account);
             }

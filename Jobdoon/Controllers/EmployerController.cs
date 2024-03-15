@@ -2,12 +2,9 @@
 using Jobdoon.Models.Entities;
 using Jobdoon.Utilities;
 using Jobdoon.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Versioning;
-using System.ComponentModel.Design;
-using System.Net;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Jobdoon.Controllers
 {
@@ -35,20 +32,32 @@ namespace Jobdoon.Controllers
 
         public IActionResult Index()
         {
+            if (signInManager.IsSignedIn(User))
+                if (!IsEmployer())
+                    return RedirectToAction("Error", "Home");
+
             ViewBag.Layout = "_EmployerLayout";
 
             return View();
         }
 
+        [Authorize]
         public IActionResult Dashboard()
         {
+            if (!IsEmployer())
+                return RedirectToAction("Error", "Home");
+
             ViewBag.Layout = "_EmployerDashboardLayout";
 
             return View("Dashboard/Opportunities/Index");
         }
 
+        [Authorize]
         public IActionResult EditCompany(int? companyId)
         {
+            if (!IsEmployer())
+                return RedirectToAction("Error", "Home");
+
             ViewBag.Layout = "_EmployerDashboardLayout";
 
             if (companyId == null)
@@ -67,6 +76,7 @@ namespace Jobdoon.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult UpdateCompany(int companyId)
         {
             var company = unit.Companies.Get(companyId);
@@ -77,6 +87,7 @@ namespace Jobdoon.Controllers
             company.Address = EditCompanyViewModel.Company.Address;
             company.Telephone = EditCompanyViewModel.Company.Telephone;
             company.Website = EditCompanyViewModel.Company.Website;
+            company.IntroductoryText = EditCompanyViewModel.Company.IntroductoryText;
             if (EditCompanyViewModel.LogoImageFile != null)
             {
                 company.LogoImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.LogoImageFile);
@@ -97,6 +108,7 @@ namespace Jobdoon.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateCompany()
         {
             var user = userManager.GetUserAsync(User).Result;
@@ -111,6 +123,7 @@ namespace Jobdoon.Controllers
                 Address = CreateCompanyViewModel.Company.Address,
                 Telephone = CreateCompanyViewModel.Company.Telephone,
                 Website = CreateCompanyViewModel.Company.Website,
+                IntroductoryText = CreateCompanyViewModel.Company.IntroductoryText,
                 LogoImage = ImageUtilities.ImageFileToByteArray(CreateCompanyViewModel.LogoImageFile),
                 BannerImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BannerImageFile),
                 BuildingImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BuildingImageFile),
@@ -123,32 +136,49 @@ namespace Jobdoon.Controllers
             return RedirectToAction("Index", "Company", new { user.CompanyId });
         }
 
+        [Authorize]
         public IActionResult Opportunities()
         {
+            if (!IsEmployer())
+                return RedirectToAction("Error", "Home");
+
             ViewBag.Layout = "_EmployerDashboardLayout";
             return View("Dashboard/Opportunities/Index");
         }
 
+        [Authorize]
         public IActionResult ActiveOpportunities()
         {
+            if (!IsEmployer())
+                return RedirectToAction("Error", "Home");
+
             ViewBag.Layout = "_EmployerDashboardLayout";
             return View("Dashboard/Opportunities/Active");
         }
 
+        [Authorize]
         public IActionResult ClosedOpportunities()
         {
+            if (!IsEmployer())
+                return RedirectToAction("Error", "Home");
+
             ViewBag.Layout = "_EmployerDashboardLayout";
             return View("Dashboard/Opportunities/Closed");
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult NewOpportunity()
         {
+            if (!IsEmployer())
+                return RedirectToAction("Error", "Home");
+
             ViewBag.Layout = "_EmployerDashboardLayout";
             return View("Dashboard/Opportunities/Create", CreateOpportunityModel);
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult CreateOpportunity()
         {
             var companyId = userManager.GetUserAsync(User).Result.CompanyId;
@@ -169,10 +199,11 @@ namespace Jobdoon.Controllers
             });
             unit.Complete();
 
-            return RedirectToAction("Opportunities", "Company", new { companyId = companyId.Value });
+            return RedirectToAction("Index", "Company", new { companyId = companyId.Value });
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult CloseOpportunity(int opportunityId)
         {
             var opportunity = unit.Opportunities.Get(opportunityId);
@@ -185,6 +216,7 @@ namespace Jobdoon.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult ActivateOpportunity(int opportunityId)
         {
             var opportunity = unit.Opportunities.Get(opportunityId);
@@ -197,6 +229,7 @@ namespace Jobdoon.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult RemoveOpportunity(int opportunityId)
         {
             var opportunity = unit.Opportunities.Get(opportunityId);
@@ -204,6 +237,11 @@ namespace Jobdoon.Controllers
             unit.Complete();
 
             return RedirectToAction("Dashboard");
+        }
+
+        private bool IsEmployer()
+        {
+            return userManager.GetUserAsync(User).Result.IsEmployer == true;
         }
     }
 }

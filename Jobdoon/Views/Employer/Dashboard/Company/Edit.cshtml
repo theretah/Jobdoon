@@ -20,6 +20,11 @@
                     <label for="latinNameInput" class="form-label">نام لاتین شرکت</label>
                     <input asp-for="Company.LatinName" class="form-control" id="latinNameInput" placeholder="مثلا Jobdoon">
                 </div>
+                <div class="mb-3">
+                    <label for="introductoryTextInput" class="form-label">معرفی شرکت در چند سطر</label>
+                    <textarea asp-for="Company.IntroductoryText" rows="10" class="form-control" id="introductoryTextInput" placeholder="خلاصه ای از توضیحات راجع به شرکت. این توضیحات میتوانند تاریخچه ای کوتاه از شرکت، راز موفقیت یا ماندگاری شرکت، و یا ویژگی هایی باشند که لازم است کارجویان بدانند.">
+                    </textarea>
+                </div>
                 <hr />
                 <div class="mb-3">
                     <label for="currentLogoImage" class="form-label d-block">لوگوی کنونی شرکت</label>
@@ -34,7 +39,7 @@
                 {
                     <div class="mb-3">
                         <label for="currentLogoImage" class="form-label d-block">بنر کنونی شرکت</label>
-                        <img src="@Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(Model.Company.BannerImage)" id="currentLogoImage" style="height:100px;width:100px;">
+                        <img src="@Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(Model.Company.BannerImage)" id="currentLogoImage" style="height:100px;">
                     </div>
                 }
                 <div class="mb-3">
@@ -46,7 +51,7 @@
                 {
                     <div class="mb-3">
                         <label for="currentLogoImage" class="form-label d-block">نمای کنونی شرکت</label>
-                        <img src="@Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(Model.Company.BuildingImage)" id="currentLogoImage" style="height:100px;width:100px;">
+                        <img src="@Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(Model.Company.BuildingImage)" id="currentLogoImage" style="height:100px;">
                     </div>
                 }
                 <div class="mb-3">

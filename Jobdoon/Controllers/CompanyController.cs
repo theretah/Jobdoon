@@ -21,22 +21,6 @@ namespace Jobdoon.Controllers
             return View(company);
         }
 
-        public IActionResult About(int companyId)
-        {
-            ViewBag.Layout = "_Layout";
-            var company = unit.Companies.Get(companyId);
-
-            return View(company);
-        }
-
-        public IActionResult Opportunities(int companyId)
-        {
-            ViewBag.Layout = "_Layout";
-            var company = unit.Companies.Get(companyId);
-
-            return View(company);
-        }
-
         public IActionResult OpportunityDetails(int opportunityId)
         {
             ViewBag.Layout = "_Layout";
