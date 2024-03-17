@@ -3,6 +3,7 @@
     public class Request
     {
         public int Id { get; set; }
+        public DateTime Date { get; set; }
 
         public AppUser Employee { get; set; }
         public string EmployeeId { get; set; }

@@ -23,10 +23,11 @@ namespace Jobdoon.Controllers
 
         [BindProperty]
         public Opportunity CreateOpportunityModel { get; set; }
+        [BindProperty]
+        public Opportunity EditOpportunityModel { get; set; }
 
         [BindProperty]
         public CreateEditCompanyViewModel CreateCompanyViewModel { get; set; }
-
         [BindProperty]
         public CreateEditCompanyViewModel EditCompanyViewModel { get; set; }
 
@@ -200,6 +201,40 @@ namespace Jobdoon.Controllers
             unit.Complete();
 
             return RedirectToAction("Index", "Company", new { companyId = companyId.Value });
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult EditOpportunity(int opportunityId)
+        {
+            if (!IsEmployer())
+                return RedirectToAction("Error", "Home");
+
+            ViewBag.Layout = "_EmployerDashboardLayout";
+            EditOpportunityModel = unit.Opportunities.Get(opportunityId);
+            return View("Dashboard/Opportunities/Edit", EditOpportunityModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult UpdateOpportunity(int opportunityId)
+        {
+            var opportunity = unit.Opportunities.Get(opportunityId);
+            opportunity.Title = EditOpportunityModel.Title;
+            opportunity.Description = EditOpportunityModel.Description;
+            opportunity.AssignmentId = EditOpportunityModel.AssignmentId;
+            opportunity.JobCategoryId = EditOpportunityModel.JobCategoryId;
+            opportunity.MinimumSalaryId = EditOpportunityModel.MinimumSalaryId;
+            opportunity.MilitaryServiceId = EditOpportunityModel.MilitaryServiceId;
+            opportunity.ExperienceId = EditOpportunityModel.ExperienceId;
+            opportunity.ProvinceId = EditOpportunityModel.ProvinceId;
+            opportunity.DegreeId = EditOpportunityModel.DegreeId;
+            opportunity.GenderId = EditOpportunityModel.GenderId;
+
+            unit.Opportunities.Update(opportunity);
+            unit.Complete();
+
+            return RedirectToAction("Index", "Company", new { companyId = opportunity.CompanyId.Value });
         }
 
         [HttpPost]

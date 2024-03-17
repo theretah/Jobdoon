@@ -1,20 +1,43 @@
 ﻿@model Jobdoon.ViewModels.CompanyOpportunityViewModel
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
-@await Component.InvokeAsync("CompanyHeader", new { companyId = Model.Company.Id })
-<ul class="nav nav-tabs justify-content-center">
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Company" asp-action="Index" asp-route-companyId="@Model.Company.Id">در یک نگاه</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Company" asp-action="About" asp-route-companyId="@Model.Company.Id">معرفی</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" asp-controller="Company" asp-action="Opportunities" asp-route-companyId="@Model.Company.Id">
-            فرصت های شغلی
-            <span class="badge text-bg-secondary">4</span>
-        </a>
-    </li>
-</ul>
+@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
+@{
+    var companyCategory = unit.CompanyCategories.Find(c => c.Id == Model.Company.CompanyCategoryId).First();
+    var personnelCount = unit.PersonnelCounts.Find(c => c.Id == Model.Company.PersonnelCountId).First();
+    var opportunities = unit.Opportunities.Find(o => o.CompanyId == Model.Company.Id).ToList();
+}
+<div class="container-fluid bg-dark">
+    <div class="container">
+        @{
+            var imageDataUrl = Jobdoon.Utilities.ImageUtilities.GenerateImageDataUrl(Model.Company.LogoImage);
+        }
+        <div class="row py-2">
+            <div class="col-1">
+                <img src="@imageDataUrl" alt="Alternate Text" style="width:100px;height:100px;" />
+            </div>
+            <div class="col">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <h4>
+                            <a class="nav-link text-light" href="#">@Model.Company.PersianName | @Model.Company.LatinName</a>
+                        </h4>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">@companyCategory.Title</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">@personnelCount.Title</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="https://@Model.Company.Website">@Model.Company.Website</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 @{
     var o = Model.Opportunity;
     var category = unit.JobCategories.Find(c => c.Id == o.JobCategoryId).First();
@@ -26,68 +49,92 @@
     var militaryService = unit.MilitaryServices.Find(c => c.Id == o.MilitaryServiceId).First();
     var degree = unit.Degrees.Find(c => c.Id == o.DegreeId).First();
 }
-<div class="container my-5">
-    <div class="row">
-        <div class="col-8 border rounded p-5">
-            <h4>استخدام @o.Title</h4>
-            <hr />
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-6">
-                        <label class="d-block fw-bold">دسته بندی شغلی</label>
-                        <p class="btn btn-dark disabled p-1">@category.Title</p>
+<div class="container-fluid bg-dark-subtle py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 border rounded p-5 bg-white">
+                <h4>استخدام @o.Title</h4>
+                <hr />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="d-block fw-bold">دسته بندی شغلی</label>
+                            <p class="btn btn-dark disabled p-1">@category.Title</p>
+                        </div>
+                        <div class="col-6">
+                            <label class="d-block fw-bold">موقعیت مکانی</label>
+                            <p class="btn btn-dark disabled p-1">@province.Name</p>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <label class="d-block fw-bold">موقعیت مکانی</label>
-                        <p class="btn btn-dark disabled p-1">@province.Name</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="d-block fw-bold">
+                                نوع همکاری
+                            </label>
+                            <p class="btn btn-dark disabled p-1">@assignment.Title</p>
+                        </div>
+                        <div class="col-6">
+                            <label class="d-block fw-bold">حداقل سابقه کار</label>
+                            <p class="btn btn-dark disabled p-1">@experience.Title</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="d-block fw-bold">حقوق</label>
+                            <p class="btn btn-dark disabled p-1">@((minimumSalary.Title == null? ("از " + Jobdoon.Utilities.StringUtilities.Divide3DigitsByComma(minimumSalary.Amount.Value) + " تومان") : minimumSalary.Title))</p>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label class="d-block fw-bold">
-                            نوع همکاری
-                        </label>
-                        <p class="btn btn-dark disabled p-1">@assignment.Title</p>
+                <hr />
+                <h5>شرح موقعیت شغلی</h5>
+                <p>@Html.Raw(o.Description)</p>
+                <hr />
+                <h5>معرفی شرکت</h5>
+                <p>@Model.Company.IntroductoryText</p>
+                <hr />
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="d-block fw-bold">جنسیت</label>
+                            <p class="btn btn-dark disabled p-1">@gender.Title</p>
+                        </div>
+                        <div class="col-6">
+                            <label class="d-block fw-bold">
+                                وضعیت نظام وظیفه
+                            </label>
+                            <p class="btn btn-dark disabled p-1">@militaryService.Title</p>
+                        </div>
                     </div>
-                    <div class="col-6">
-                        <label class="d-block fw-bold">حداقل سابقه کار</label>
-                        <p class="btn btn-dark disabled p-1">@experience.Title</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label class="d-block fw-bold">حقوق</label>
-                        <p class="btn btn-dark disabled p-1">@((minimumSalary.Title == null? ("از " + Jobdoon.Utilities.StringUtilities.Divide3DigitsByComma(minimumSalary.Amount.Value) + " تومان") : minimumSalary.Title))</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="d-block fw-bold">
+                                حداقل مدرک تحصیلی
+                            </label>
+                            <p class="btn btn-dark disabled p-1">@degree.Title</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <hr />
-            <h5>شرح موقعیت شغلی</h5>
-            <p>@Html.Raw(o.Description)</p>
-            <hr />
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-6">
-                        <label class="d-block fw-bold">جنسیت</label>
-                        <p class="btn btn-dark disabled p-1">@gender.Title</p>
+            <div class="col-4">
+                @{
+                    var user = await userManager.GetUserAsync(User);
+                }
+                <div class="card border rounded bg-white text-center">
+                    <div class="card-header h5">
+                        از اینجا شروع کنید
                     </div>
-                    <div class="col-6">
-                        <label class="d-block fw-bold">
-                            وضعیت نظام وظیفه
-                        </label>
-                        <p class="btn btn-dark disabled p-1">@militaryService.Title</p>
+                    <div class="card-body">
+                        <p class="card-text">@user.FullName</p>
+                        <p class="card-text">@user.Email</p>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label class="d-block fw-bold">
-                            حداقل مدرک تحصیلی
-                        </label>
-                        <p class="btn btn-dark disabled p-1">@degree.Title</p>
+                    <div class="card-body">
+                        <hr />
+                        <form method="post" asp-controller="Employee" asp-action="SendRequest" asp-route-opportunityId="@Model.Opportunity.Id">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">ارسال درخواست</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col"></div>
     </div>
 </div>

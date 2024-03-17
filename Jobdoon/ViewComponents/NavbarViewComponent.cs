@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Jobdoon.Models.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Jobdoon.ViewComponents
 {
@@ -15,6 +16,13 @@ namespace Jobdoon.ViewComponents
             }
 
             return View();
+        }
+    }
+    public class RequestCardViewComponent : ViewComponent
+    {
+        public async Task<IViewComponentResult> InvokeAsync(Request request)
+        {
+            return View(request);
         }
     }
 }

@@ -1,4 +1,9 @@
-﻿@model Jobdoon.ViewModels.SearchViewModel
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@{
+    var user = userManager.GetUserAsync(User).Result;
+    var hired = unit.Requests.Find(r => r.EmployeeId == user.Id && r.RequestStateId == (int)Jobdoon.Utilities.RequestStatesUtilities.Hired).ToList();
+}
 <div class="container-fluid bg-light p-0">
     <div class="container">
         <nav class="navbar navbar-expand-lg">
@@ -25,46 +30,13 @@
 <div class="container">
     <div class="row">
         <div class="col-9">
-            <nav class="navbar navbar-expand-lg">
-                <ul class="navbar-nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Employee" asp-action="Requests">
-                            همه
-                            <span class="badge text-bg-secondary">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Employee" asp-action="Sent">
-                            ارسال شده
-                            <span class="badge text-bg-secondary">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Employee" asp-action="Reviewed">
-                            بررسی شده
-                            <span class="badge text-bg-secondary">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Employee" asp-action="InterviewAccepted">
-                            تایید برای مصاحبه
-                            <span class="badge text-bg-secondary">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            موافقت شده
-                            <span class="badge text-bg-secondary">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-controller="Employee" asp-action="Cancelled">
-                            بسته شده
-                            <span class="badge text-bg-secondary">0</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            @await Component.InvokeAsync("RequestsNavbar", new { activeTab = "HiredTab" })
+            <div class="container">
+                @foreach (var r in hired)
+                {
+                    @await Component.InvokeAsync("RequestCard", new { request = r })
+                }
+            </div>
         </div>
         <div class="col-3"></div>
     </div>

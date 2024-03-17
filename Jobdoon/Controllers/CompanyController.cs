@@ -1,5 +1,6 @@
 ﻿using Jobdoon.DataAccess.UnitOfWork;
 using Jobdoon.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jobdoon.Controllers
@@ -21,6 +22,7 @@ namespace Jobdoon.Controllers
             return View(company);
         }
 
+        [Authorize]
         public IActionResult OpportunityDetails(int opportunityId)
         {
             ViewBag.Layout = "_Layout";
