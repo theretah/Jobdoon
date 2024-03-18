@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\fonts\\IRANSans-web.woff",
+      "PackagePath": "staticwebassets\\fonts\\IRANSans-web.woff"
+    },
+    {
       "Id": "E:\\CSP2\\Jobdoon\\Jobdoon\\wwwroot\\images\\c.webp",
       "PackagePath": "staticwebassets\\images\\c.webp"
     },

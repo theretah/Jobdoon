@@ -116,22 +116,30 @@
                 </div>
             </div>
             <div class="col-4">
-                @{
-                    var user = await userManager.GetUserAsync(User);
-                }
+
                 <div class="card border rounded bg-white text-center">
                     <div class="card-header h5">
                         از اینجا شروع کنید
                     </div>
                     <div class="card-body">
-                        <p class="card-text">@user.FullName</p>
-                        <p class="card-text">@user.Email</p>
-                    </div>
-                    <div class="card-body">
-                        <hr />
-                        <form method="post" asp-controller="Employee" asp-action="SendRequest" asp-route-opportunityId="@Model.Opportunity.Id">
-                            <button type="submit" class="btn btn-primary btn-lg w-100">ارسال درخواست</button>
-                        </form>
+                        @{
+                            var user = await userManager.GetUserAsync(User);
+                            if (!user.IsEmployer)
+                            {
+                                <p class="card-text">@user.FullName</p>
+                                <p class="card-text">@user.Email</p>
+                                <hr />
+                                <form method="post" asp-controller="Employee" asp-action="SendRequest" asp-route-opportunityId="@Model.Opportunity.Id">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">ارسال درخواست</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <div class="bg-danger-subtle p-2 rounded">
+                                    <p class="text-danger">شما با حساب کاربری کارفرمایان وارد شده‌اید و نمی‌توانید به عنوان کارجو درخواست همکاری ارسال کنید.</p>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>

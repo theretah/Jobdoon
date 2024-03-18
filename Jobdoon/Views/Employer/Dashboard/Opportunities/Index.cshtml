@@ -30,44 +30,7 @@
     <div class="row">
         @foreach (var o in opportunities)
         {
-            var province = unit.Provinces.Find(p => o.ProvinceId == p.Id).First();
-            var assignment = unit.Assignments.Find(p => o.AssignmentId == p.Id).First();
-            var minSalary = unit.MinimumSalaries.Find(p => o.MinimumSalaryId == p.Id).First();
-            <div class="card mb-3 me-3" style="max-width: 420px;">
-                <div class="row g-0">
-                    <div class="card-body">
-                        <a class="text-decoration-none" asp-controller="Company" asp-action="OpportunityDetails" asp-route-opportunityId="@o.Id">
-                            <h5 class="card-title">@o.Title</h5>
-                            <p class="card-text text-dark">@province.Name</p>
-                            <p class="card-text text-dark">قرارداد @assignment.Title</p>
-                            <p class="card-text text-dark">
-                                حقوق @((minSalary.Title) == null?
-                            $"از " + $"{StringUtilities.Divide3DigitsByComma(minSalary.Amount.Value)} تومان"
-                            : minSalary.Title)
-                            </p>
-                        </a>
-                        <br />
-                        <a asp-controller="Employer" asp-action="EditOpportunity"
-                           asp-route-opportunityId="@o.Id" class="btn btn-secondary">
-                            ویرایش
-                        </a>
-                        <form method="post" class="m-0 p-0 d-inline">
-                            <button asp-controller="Employer" asp-action="CloseOpportunity"
-                                    asp-route-opportunityId="@o.Id" class="btn btn-secondary">
-                                بستن
-                            </button>
-                            <button asp-controller="Employer" asp-action="RemoveOpportunity"
-                                    asp-route-opportunityId="@o.Id" class="btn btn-danger">
-                                حذف
-                            </button>
-                        </form>
-                        <br />
-                        <p class="card-text float-end">
-                            <small class="text-muted">منتشر شده در @Jobdoon.Utilities.PersianCalendarUtilities.YearMonthDate(o.Date)</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @await Component.InvokeAsync("EmployerOpportunity", new { opportunity = o })
         }
     </div>
 </div>

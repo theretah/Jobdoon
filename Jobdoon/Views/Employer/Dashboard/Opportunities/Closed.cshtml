@@ -1,4 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
+@using Jobdoon.Utilities;
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
 @{
     var user = userManager.GetUserAsync(User).Result;
@@ -15,7 +16,7 @@
                     <a asp-controller="Employer" asp-action="Opportunities" class="nav-link">همه آگهی ها</a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Employer" asp-action="ActiveOpportunities" class="nav-link">اگهی های فعال</a>
+                    <a asp-controller="Employer" asp-action="ActiveOpportunities" class="nav-link">آگهی های فعال</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">آگهی های بسته شده</a>
@@ -29,37 +30,7 @@
     <div class="row">
         @foreach (var o in opportunities)
         {
-            var province = unit.Provinces.Find(p => o.ProvinceId == p.Id).First();
-            var assignment = unit.Assignments.Find(p => o.AssignmentId == p.Id).First();
-            var minSalary = unit.MinimumSalaries.Find(p => o.MinimumSalaryId == p.Id).First();
-            <div class="card mb-3 me-3" style="max-width: 420px;">
-                <div class="row g-0">
-                    <div class="card-body">
-                        <h5 class="card-title">@o.Title</h5>
-                        <p class="card-text">@province.Name</p>
-                        <p class="card-text">@assignment.Title</p>
-                        <p class="card-text">@((minSalary.Title) == null? $"از {minSalary.Amount:n0} تومان" : minSalary.Title)</p>
-                        <form method="post" class="m-0 p-0">
-                            <button asp-controller="Employer" asp-action="ActivateOpportunity"
-                                    asp-route-opportunityId="@o.Id" class="btn btn-primary">
-                                فعال سازی مجدد
-                            </button>
-                            <button asp-controller="Employer" asp-action="EditOpportunity"
-                                    asp-route-opportunityId="@o.Id" class="btn btn-secondary">
-                                ویرایش
-                            </button>
-                            <button asp-controller="Employer" asp-action="RemoveOpportunity"
-                                    asp-route-opportunityId="@o.Id" class="btn btn-danger">
-                                حذف
-                            </button>
-                        </form>
-                        <br />
-                        <p class="card-text float-end">
-                            <small class="text-muted">منتشر شده در @Jobdoon.Utilities.PersianCalendarUtilities.YearMonthDate(o.Date)</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @await Component.InvokeAsync("EmployerOpportunity", new { opportunity = o })
         }
     </div>
 </div>
