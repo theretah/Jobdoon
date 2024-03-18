@@ -26,11 +26,11 @@ namespace Jobdoon.Controllers
         public List<Gender> Genders { get; set; }
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewBag.Layout = "_Layout";
 
-            var user = userManager.GetUserAsync(User).Result;
+            var user = await userManager.GetUserAsync(User);
             Account = new AccountViewModel
             {
                 AppUser = user
@@ -53,7 +53,7 @@ namespace Jobdoon.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProfile()
         {
-            var user = userManager.GetUserAsync(User).Result;
+            var user = await userManager.GetUserAsync(User);
             var genders = unit.Genders.GetValids().ToList();
 
             user.FullName = Account.AppUser.FullName;
@@ -86,9 +86,9 @@ namespace Jobdoon.Controllers
             return RedirectToAction("Index", "Home", null);
         }
 
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            signInManager.SignOutAsync();
+            await signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home", null);
         }

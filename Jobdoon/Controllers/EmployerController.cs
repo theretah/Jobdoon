@@ -112,7 +112,7 @@ namespace Jobdoon.Controllers
         [Authorize]
         public async Task<IActionResult> CreateCompany()
         {
-            var user = userManager.GetUserAsync(User).Result;
+            var user = await userManager.GetUserAsync(User);
 
             unit.Companies.Add(new Company
             {
@@ -180,9 +180,9 @@ namespace Jobdoon.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult CreateOpportunity()
+        public async Task<IActionResult> CreateOpportunity()
         {
-            var companyId = userManager.GetUserAsync(User).Result.CompanyId;
+            var companyId = (await userManager.GetUserAsync(User)).CompanyId;
             unit.Opportunities.Add(new Opportunity
             {
                 Title = CreateOpportunityModel.Title,
@@ -277,6 +277,48 @@ namespace Jobdoon.Controllers
         private bool IsEmployer()
         {
             return userManager.GetUserAsync(User).Result.IsEmployer == true;
+        }
+
+        [Authorize]
+        public IActionResult Requests()
+        {
+            ViewBag.Layout = "_EmployerDashboardLayout";
+            return View("Dashboard/Requests/Index");
+        }
+
+        [Authorize]
+        public IActionResult Cancelled()
+        {
+            ViewBag.Layout = "_EmployerDashboardLayout";
+            return View("Dashboard/Requests/Cancelled");
+        }
+
+        [Authorize]
+        public IActionResult Hired()
+        {
+            ViewBag.Layout = "_EmployerDashboardLayout";
+            return View("Dashboard/Requests/Hired");
+        }
+
+        [Authorize]
+        public IActionResult InterviewAccepted()
+        {
+            ViewBag.Layout = "_EmployerDashboardLayout";
+            return View("Dashboard/Requests/InterviewAccepted");
+        }
+
+        [Authorize]
+        public IActionResult Reviewed()
+        {
+            ViewBag.Layout = "_EmployerDashboardLayout";
+            return View("Dashboard/Requests/Reviewed");
+        }
+
+        [Authorize]
+        public IActionResult Sent()
+        {
+            ViewBag.Layout = "_EmployerDashboardLayout";
+            return View("Dashboard/Requests/Sent");
         }
     }
 }

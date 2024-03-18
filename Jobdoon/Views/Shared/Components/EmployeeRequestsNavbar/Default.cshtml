@@ -1,0 +1,57 @@
+﻿@model string
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
+@using  Jobdoon.Utilities;
+@{
+    var user = await userManager.GetUserAsync(User);
+
+    var requests = unit.Requests.Find(r => r.EmployeeId == user.Id).ToList();
+    var sent = requests.Where(r => r.RequestStateId == (int)RequestStatesUtilities.Sent);
+    var hired = requests.Where(r => r.RequestStateId == (int)RequestStatesUtilities.Hired);
+    var cancelled = requests.Where(r =>
+    r.RequestStateId == (int)RequestStatesUtilities.Closed ||
+    r.RequestStateId == (int)RequestStatesUtilities.EmployeeCancelled ||
+    r.RequestStateId == (int)RequestStatesUtilities.EmployerCancelled);
+    var reviewed = requests.Where(r => r.RequestStateId == (int)RequestStatesUtilities.Reviewed);
+    var interviewAccepted = requests.Where(r => r.RequestStateId == (int)RequestStatesUtilities.InterviewAccepted);
+}
+<nav class="navbar navbar-expand-lg">
+    <ul class="navbar-nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link @(Model == "IndexTab" ? "active" : "")" asp-controller="Employee" asp-action="Requests" id="IndexTab">
+                همه
+                <span class="badge text-bg-secondary">@requests.Count()</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Model == "SentTab" ? "active" : "")" asp-controller="Employee" asp-action="Sent" id="SentTab">
+                ارسال شده
+                <span class="badge text-bg-secondary">@sent.Count()</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Model == "ReviewedTab" ? "active" : "")" asp-controller="Employee" asp-action="Reviewed" id="ReviewedTab">
+                بررسی شده
+                <span class="badge text-bg-secondary">@reviewed.Count()</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Model == "InterviewAcceptedTab" ? "active" : "")" asp-controller="Employee" asp-action="InterviewAccepted" id="InterviewAcceptedTab">
+                تایید برای مصاحبه
+                <span class="badge text-bg-secondary">@interviewAccepted.Count()</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Model == "HiredTab" ? "active" : "")" asp-controller="Employee" asp-action="Hired" id="HiredTab">
+                موافقت شده
+                <span class="badge text-bg-secondary">@hired.Count()</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(Model == "CancelledTab" ? "active" : "")" asp-controller="Employee" asp-action="Cancelled" id="CancelledTab">
+                بسته شده
+                <span class="badge text-bg-secondary">@cancelled.Count()</span>
+            </a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,17 @@
+﻿@inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@{
+    var user = await userManager.GetUserAsync(User);
+    var interviewAccepted = unit.Requests.FindIncluded(r => r.Opportunity.CompanyId == user.CompanyId && r.RequestStateId == (int)Jobdoon.Utilities.RequestStatesUtilities.InterviewAccepted).ToList();
+}
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            @await Component.InvokeAsync("EmployerRequestsNavbar", new { activeTab = "InterviewAcceptedTab" })
+            <div class="container">
+                @await Component.InvokeAsync("EmployerRequestCard", new { requests = interviewAccepted })
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

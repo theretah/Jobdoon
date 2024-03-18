@@ -30,7 +30,7 @@
 <div class="container">
     <div class="row">
         <div class="col-9">
-            @await Component.InvokeAsync("RequestsNavbar", new { activeTab = "HiredTab" })
+            @await Component.InvokeAsync("EmployeeRequestsNavbar", new { activeTab = "HiredTab" })
             <div class="container">
                 @foreach (var r in hired)
                 {

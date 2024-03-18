@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Jobdoon.Models.Entities.Request>
+@inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@if (Model.Count() != 0)
+{
+    <div class="table-responsive mt-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ردیف</th>
+                    <th scope="col">تاریخ</th>
+                    <th scope="col">آگهی</th>
+                    <th scope="col">کارجو</th>
+                    <th scope="col">وضعیت درخواست</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                    foreach (var r in Model)
+                    {
+                        <tr>
+                            <th scope="row">
+                                <button class="btn border-0 disabled">
+                                    @(i++)
+                                </button>
+                            </th>
+                            <td>
+                                <button class="btn border-0 disabled">
+                                    @(Jobdoon.Utilities.PersianCalendarUtilities.YearMonthDate(r.Date))
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn">
+                                    @r.Opportunity.Title
+                                </button>
+                            </td>
+                            <td>
+                                @*
+                                    TODO: Design user profile page    
+                                *@
+                                <button class="btn" asp-controller="Account" asp-action="Index">
+                                    @r.Employee.FullName
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn">
+                                    @r.RequestState.Title
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-info text-decoration-none " href="#">تایید بررسی</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary text-decoration-none " href="#">تایید برای مصاحبه</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-success text-decoration-none " href="#">استخدام</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger text-decoration-none " href="#">لغو درخواست</button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+}
