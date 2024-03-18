@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "E:\\CSP2\\Jobdoon\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\shared\\components\\employerrequestcard\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\shared\\components\\employerrequestcard\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\viewmodels\\accountviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\viewmodels\\accountviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +22,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountViewModel.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\ViewModels\\AccountViewModel.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\ViewModels\\AccountViewModel.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\ViewModels\\AccountViewModel.cs",
+              "RelativeToolTip": "Jobdoon\\ViewModels\\AccountViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T20:08:51.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Account\\Index.cshtml",
+              "RelativeDocumentMoniker": "Jobdoon\\Views\\Account\\Index.cshtml",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Account\\Index.cshtml",
+              "RelativeToolTip": "Jobdoon\\Views\\Account\\Index.cshtml",
+              "ViewState": "AQIAAIkAAAAAAAAAAAAowJ8AAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-18T20:08:35.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\Controllers\\AccountController.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Jobdoon\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAxwFAAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T20:08:25.268Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -23,19 +70,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Shared\\Components\\EmployerRequestCard\\Default.cshtml",
-              "RelativeDocumentMoniker": "Jobdoon\\Views\\Shared\\Components\\EmployerRequestCard\\Default.cshtml",
-              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Shared\\Components\\EmployerRequestCard\\Default.cshtml",
-              "RelativeToolTip": "Jobdoon\\Views\\Shared\\Components\\EmployerRequestCard\\Default.cshtml",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAACoAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-18T17:07:15.293Z",
-              "EditorCaption": ""
             }
           ]
         }

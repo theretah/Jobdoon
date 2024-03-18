@@ -7,7 +7,8 @@
     var genders = unit.Genders.GetValids().ToList();
 
     var userIsEmployer = Model.AppUser.IsEmployer;
-    var profileImageIsNull = (Model.AppUser.ProfileImage == null);
+    var isProfileImageNull = (Model.AppUser.ProfileImage == null);
+    var isResumeNull = (Model.AppUser.ResumeAppendix == null);
 }
 <div class="container mt-3">
     <h3>
@@ -123,7 +124,7 @@
         <div class="p-5 border rounded">
             @if (!userIsEmployer)
             {
-                if (profileImageIsNull)
+                if (isProfileImageNull)
                 {
                     <div class="mb-3">
                         <label for="profileInput" class="form-label">انتخاب تصویر پروفایل</label>
@@ -144,7 +145,30 @@
                         </div>
                     </div>
                 }
+                if (isResumeNull)
+                {
+                    <div class="mb-3">
+                        <label for="resumeInput" class="form-label">انتخاب فایل رزومه</label>
+                        <input asp-for="ResumeAppendixFile" class="form-control" id="resumeInput">
+                    </div>
+                }
+                else
+                {
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="currentResumeAppendix" class="form-label">فایل رزومه کنونی</label>
+                            @*Display current resume PDF file link*@
+                        </div>
+                        <div class="mb-3">
+                            <button asp-controller="Account" asp-action="RemoveResumeAppendix"
+                                    class="btn btn-danger">
+                                حذف رزومه ضمیمه
+                            </button>
+                        </div>
+                    </div>
+                }
             }
+
             <div class="mb-3">
                 <label for="emailInput" class="form-label">آدرس ایمیل</label>
                 <input asp-for="AppUser.Email" class="form-control" id="emailInput" placeholder="name@example.com">

@@ -91,15 +91,15 @@ namespace Jobdoon.Controllers
             company.IntroductoryText = EditCompanyViewModel.Company.IntroductoryText;
             if (EditCompanyViewModel.LogoImageFile != null)
             {
-                company.LogoImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.LogoImageFile);
+                company.LogoImage = FileUtilities.FileToByteArray(EditCompanyViewModel.LogoImageFile);
             }
             if (EditCompanyViewModel.BuildingImageFile != null)
             {
-                company.BuildingImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BuildingImageFile);
+                company.BuildingImage = FileUtilities.FileToByteArray(EditCompanyViewModel.BuildingImageFile);
             }
             if (EditCompanyViewModel.BannerImageFile != null)
             {
-                company.BannerImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BannerImageFile);
+                company.BannerImage = FileUtilities.FileToByteArray(EditCompanyViewModel.BannerImageFile);
             }
 
             unit.Companies.Update(company);
@@ -125,9 +125,9 @@ namespace Jobdoon.Controllers
                 Telephone = CreateCompanyViewModel.Company.Telephone,
                 Website = CreateCompanyViewModel.Company.Website,
                 IntroductoryText = CreateCompanyViewModel.Company.IntroductoryText,
-                LogoImage = ImageUtilities.ImageFileToByteArray(CreateCompanyViewModel.LogoImageFile),
-                BannerImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BannerImageFile),
-                BuildingImage = ImageUtilities.ImageFileToByteArray(EditCompanyViewModel.BuildingImageFile),
+                LogoImage = FileUtilities.FileToByteArray(CreateCompanyViewModel.LogoImageFile),
+                BannerImage = FileUtilities.FileToByteArray(EditCompanyViewModel.BannerImageFile),
+                BuildingImage = FileUtilities.FileToByteArray(EditCompanyViewModel.BuildingImageFile),
             });
             unit.Complete();
 

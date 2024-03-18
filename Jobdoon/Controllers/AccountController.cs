@@ -70,7 +70,19 @@ namespace Jobdoon.Controllers
                 user.GenderId = Account.AppUser.GenderId;
                 if (Account.ProfileImageFile != null)
                 {
-                    user.ProfileImage = ImageUtilities.ImageFileToByteArray(Account.ProfileImageFile);
+                    var imageBytes = FileUtilities.FileToByteArray(Account.ProfileImageFile);
+                    if (user.ProfileImage != imageBytes)
+                    {
+                        user.ProfileImage = imageBytes;
+                    }
+                }
+                if (Account.ResumeAppendixFile != null)
+                {
+                    var resumeBytes = FileUtilities.FileToByteArray(Account.ResumeAppendixFile);
+                    if (user.ResumeAppendix != resumeBytes)
+                    {
+                        user.ResumeAppendix = resumeBytes;
+                    }
                 }
                 if (user.GenderId == genders[0].Id)
                 {
@@ -98,6 +110,15 @@ namespace Jobdoon.Controllers
         {
             var user = await userManager.GetUserAsync(User);
             user.ProfileImage = null;
+            await userManager.UpdateAsync(user);
+
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> RemoveResumeAppendix()
+        {
+            var user = await userManager.GetUserAsync(User);
+            user.ResumeAppendix = null;
             await userManager.UpdateAsync(user);
 
             return RedirectToAction("Index");

@@ -624,6 +624,9 @@ namespace Jobdoon.Migrations
                     b.Property<byte[]>("ProfileImage")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<byte[]>("ResumeAppendix")
+                        .HasColumnType("varbinary(max)");
+
                     b.HasIndex("CompanyId")
                         .IsUnique()
                         .HasFilter("[CompanyId] IS NOT NULL");
