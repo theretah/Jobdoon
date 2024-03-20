@@ -17,4 +17,13 @@ namespace Jobdoon.DbContextConfiguration
                 .HasForeignKey(e => e.GenderId);
         }
     }
+    public class ResumeEntityTypeConfiguration : IEntityTypeConfiguration<Resume>
+    {
+        public void Configure(EntityTypeBuilder<Resume> builder)
+        {
+            builder.HasOne(r => r.Employee)
+                .WithOne(e => e.ResumeAppendix)
+                .HasForeignKey<AppUser>(e => e.ResumeAppendixId);
+        }
+    }
 }

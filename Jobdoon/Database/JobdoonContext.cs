@@ -31,6 +31,7 @@ namespace Jobdoon.Database
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Degree> Degrees { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<Resume> Resumes { get; set; }
 
         public DbSet<Request> Requests { get; set; }
         public DbSet<Save> Saves { get; set; }

@@ -26,6 +26,7 @@ namespace Jobdoon.DataAccess.UnitOfWork
             RequestStates = new RequestStateRepository(context);
             Saves = new SaveRepository(context);
             MinimumSalaries = new MinimumSalaryRepository(context);
+            Resumes = new ResumeRepository(context);
         }
 
         public IAssignmentRepository Assignments { get; private set; }
@@ -57,6 +58,8 @@ namespace Jobdoon.DataAccess.UnitOfWork
         public ISaveRepository Saves { get; private set; }
 
         public IMinimumSalaryRepository MinimumSalaries { get; private set; }
+
+        public IResumeRepository Resumes { get; private set; }
 
         public int Complete()
         {

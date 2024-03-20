@@ -1,4 +1,8 @@
-﻿namespace Jobdoon.Utilities
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace Jobdoon.Utilities
 {
     public static class FileUtilities
     {

@@ -5,6 +5,7 @@ using Jobdoon.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Versioning;
 
 namespace Jobdoon.Controllers
 {
@@ -31,6 +32,7 @@ namespace Jobdoon.Controllers
             ViewBag.Layout = "_Layout";
 
             var user = await userManager.GetUserAsync(User);
+            user.ResumeAppendix = unit.Resumes.GetByEmployeeId(user.Id);
             Account = new AccountViewModel
             {
                 AppUser = user
@@ -47,7 +49,7 @@ namespace Jobdoon.Controllers
                 BirthDay = Account.AppUser.BirthDate.Value.Day,
                 BirthMonth = Account.AppUser.BirthDate.Value.Month,
                 BirthYear = Account.AppUser.BirthDate.Value.Year,
-            });
+            }); ;
         }
 
         [HttpPost]
@@ -78,12 +80,32 @@ namespace Jobdoon.Controllers
                 }
                 if (Account.ResumeAppendixFile != null)
                 {
-                    var resumeBytes = FileUtilities.FileToByteArray(Account.ResumeAppendixFile);
-                    if (user.ResumeAppendix != resumeBytes)
+                    var inputResume = new Resume
                     {
-                        user.ResumeAppendix = resumeBytes;
+                        Content = FileUtilities.FileToByteArray(Account.ResumeAppendixFile),
+                        FileName = Account.ResumeAppendixFile.FileName,
+                        EmployeeId = user.Id,
+                        Employee = user
+                    };
+
+                    var userResume = unit.Resumes.GetByEmployeeId(user.Id);
+                    if (userResume == null)
+                    {
+                        // Add resume
+                        unit.Resumes.Add(inputResume);
+                        unit.Complete();
+                        user.ResumeAppendix = inputResume;
+                        user.ResumeAppendixId = unit.Resumes.GetByEmployeeId(user.Id).Id;
+                    }
+                    else
+                    {
+                        // Update current resume
+                        userResume.FileName = inputResume.FileName;
+                        userResume.Content = inputResume.Content;
+                        unit.Resumes.Update(userResume);
                     }
                 }
+
                 if (user.GenderId == genders[0].Id)
                 {
                     user.MilitaryServiceId = Account.AppUser.MilitaryServiceId;
@@ -93,7 +115,6 @@ namespace Jobdoon.Controllers
                     user.MilitaryServiceId = null;
                 }
             }
-
             await userManager.UpdateAsync(user);
             return RedirectToAction("Index", "Home", null);
         }
@@ -118,10 +139,25 @@ namespace Jobdoon.Controllers
         public async Task<IActionResult> RemoveResumeAppendix()
         {
             var user = await userManager.GetUserAsync(User);
+            unit.Resumes.Remove(user.ResumeAppendixId.Value);
+            unit.Complete();
+
             user.ResumeAppendix = null;
+            user.ResumeAppendixId = null;
             await userManager.UpdateAsync(user);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DownloadResumeFile(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            var resume = unit.Resumes.GetByEmployeeId(userId);
+
+            var contentType = "application/pdf";
+
+            return File(new MemoryStream(resume.Content), contentType, $"{user.FullName.Replace(" ", "_")}_ResumeFile.pdf");
         }
     }
 }

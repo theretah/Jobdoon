@@ -12,6 +12,10 @@ namespace Jobdoon.DbContextConfiguration
                 .WithOne(c => c.Employer)
                 .HasForeignKey<Company>(c => c.EmployerId);
 
+            builder.HasOne(u => u.ResumeAppendix)
+               .WithOne(c => c.Employee)
+               .HasForeignKey<Resume>(r => r.EmployeeId);
+
             builder.HasOne(u => u.Gender)
                 .WithMany(g => g.Employees);
 

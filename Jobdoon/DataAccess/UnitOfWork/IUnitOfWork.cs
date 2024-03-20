@@ -19,6 +19,7 @@ namespace Jobdoon.DataAccess.UnitOfWork
         IRequestStateRepository RequestStates { get; }
         ISaveRepository Saves { get; }
         IMinimumSalaryRepository MinimumSalaries { get; }
+        IResumeRepository Resumes { get; }
 
         int Complete();
     }

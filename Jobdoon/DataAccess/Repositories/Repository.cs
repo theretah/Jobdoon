@@ -47,6 +47,11 @@ namespace Jobdoon.DataAccess.Repositories
             set.Remove(entity);
         }
 
+        public void Remove(int id)
+        {
+            set.Remove(Get(id));
+        }
+
         public void RemoveRange(IEnumerable<T> entities)
         {
             set.RemoveRange(entities);

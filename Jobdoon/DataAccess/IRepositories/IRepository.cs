@@ -11,6 +11,7 @@ namespace Jobdoon.DataAccess.IRepositories
         void Add(T entity);
         void AddRange(IEnumerable<T> entities);
 
+        void Remove(int id);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
     }

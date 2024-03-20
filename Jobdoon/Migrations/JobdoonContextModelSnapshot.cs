@@ -369,6 +369,31 @@ namespace Jobdoon.Migrations
                     b.ToTable("RequestStates");
                 });
 
+            modelBuilder.Entity("Jobdoon.Models.Entities.Resume", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Resumes");
+                });
+
             modelBuilder.Entity("Jobdoon.Models.Entities.Save", b =>
                 {
                     b.Property<string>("EmployeeId")
@@ -624,8 +649,8 @@ namespace Jobdoon.Migrations
                     b.Property<byte[]>("ProfileImage")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<byte[]>("ResumeAppendix")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<int?>("ResumeAppendixId")
+                        .HasColumnType("int");
 
                     b.HasIndex("CompanyId")
                         .IsUnique()
@@ -636,6 +661,10 @@ namespace Jobdoon.Migrations
                     b.HasIndex("GenderId");
 
                     b.HasIndex("MilitaryServiceId");
+
+                    b.HasIndex("ResumeAppendixId")
+                        .IsUnique()
+                        .HasFilter("[ResumeAppendixId] IS NOT NULL");
 
                     b.HasDiscriminator().HasValue("AppUser");
                 });
@@ -847,6 +876,10 @@ namespace Jobdoon.Migrations
                         .WithMany("Employees")
                         .HasForeignKey("MilitaryServiceId");
 
+                    b.HasOne("Jobdoon.Models.Entities.Resume", "ResumeAppendix")
+                        .WithOne("Employee")
+                        .HasForeignKey("Jobdoon.Models.Entities.AppUser", "ResumeAppendixId");
+
                     b.Navigation("Company");
 
                     b.Navigation("Degree");
@@ -854,6 +887,8 @@ namespace Jobdoon.Migrations
                     b.Navigation("Gender");
 
                     b.Navigation("MilitaryService");
+
+                    b.Navigation("ResumeAppendix");
                 });
 
             modelBuilder.Entity("Jobdoon.Models.Entities.Assignment", b =>
@@ -930,6 +965,12 @@ namespace Jobdoon.Migrations
             modelBuilder.Entity("Jobdoon.Models.Entities.RequestState", b =>
                 {
                     b.Navigation("Requests");
+                });
+
+            modelBuilder.Entity("Jobdoon.Models.Entities.Resume", b =>
+                {
+                    b.Navigation("Employee")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Jobdoon.Models.Entities.AppUser", b =>
