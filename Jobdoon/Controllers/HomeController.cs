@@ -24,11 +24,7 @@ namespace Jobdoon.Controllers
         public IActionResult Index()
         {
             ViewBag.Layout = "_Layout";
-            return View(new SearchViewModel
-            {
-                Provinces = unit.Provinces.GetAll(),
-                JobCategories = unit.JobCategories.GetAll()
-            });
+            return View();
         }
 
         public IActionResult Privacy()

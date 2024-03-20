@@ -6,12 +6,9 @@
 }
 <div class="container">
     <div class="row">
-        <div class="col-9">
-            @await Component.InvokeAsync("EmployerRequestsNavbar", new { activeTab = "HiredTab" })
-            <div class="container">
-                @await Component.InvokeAsync("EmployerRequestCard", new { requests = hired })
-            </div>
+        @await Component.InvokeAsync("EmployerRequestsNavbar", new { activeTab = "HiredTab" })
+        <div class="container">
+            @await Component.InvokeAsync("EmployerRequestCard", new { requests = hired })
         </div>
-        <div class="col-3"></div>
     </div>
 </div>

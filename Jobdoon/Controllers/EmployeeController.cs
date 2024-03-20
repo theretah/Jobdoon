@@ -18,18 +18,25 @@ namespace Jobdoon.Controllers
             this.unit = unit;
             this.userManager = userManager;
         }
+        [BindProperty(SupportsGet = true)]
+        public SearchViewModel SearchModel { get; set; } = new SearchViewModel();
 
         public IActionResult Search()
         {
             ViewBag.Layout = "_Layout";
-            return View(new SearchViewModel
+            if (SearchModel.SearchQuery != null)
             {
-                Provinces = unit.Provinces.GetAll(),
-                JobCategories = unit.JobCategories.GetAll(),
-                Assignments = unit.Assignments.GetAll(),
-                Experiences = unit.Experiences.GetAll(),
-                MinimumSalaries = unit.MinimumSalaries.GetAll()
-            });
+                SearchModel.Opportunities = unit.Opportunities.Find(o =>
+                    o.Title.ToLower().Contains(SearchModel.SearchQuery.ToLower()) ||
+                    o.Company.LatinName.ToLower().Contains(SearchModel.SearchQuery.ToLower()) ||
+                    o.Company.PersianName.Contains(SearchModel.SearchQuery.ToLower()))
+                    .ToList();
+            }
+            else
+            {
+                SearchModel.Opportunities = unit.Opportunities.GetAll();
+            }
+            return View(SearchModel);
         }
 
         [Authorize]
@@ -95,14 +102,7 @@ namespace Jobdoon.Controllers
         public IActionResult Saved()
         {
             ViewBag.Layout = "_Layout";
-            return View(new SearchViewModel
-            {
-                Provinces = unit.Provinces.GetAll(),
-                JobCategories = unit.JobCategories.GetAll(),
-                Assignments = unit.Assignments.GetAll(),
-                Experiences = unit.Experiences.GetAll(),
-                MinimumSalaries = unit.MinimumSalaries.GetAll()
-            });
+            return View();
         }
     }
 }

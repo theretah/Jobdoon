@@ -25,7 +25,7 @@
                 <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                 <select class="form-select" id="inlineFormSelectPref">
                     <option selected>همه ی استان ها</option>
-                    @foreach (var p in Model.Provinces)
+                    @foreach (var p in unit.Provinces.GetAll())
                     {
                         <option value="@p.Id">@p.Name</option>
                     }
@@ -35,7 +35,7 @@
                 <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                 <select class="form-select" id="inlineFormSelectPref">
                     <option selected>همه ی دسته بندی ها</option>
-                    @foreach (var c in Model.JobCategories)
+                    @foreach (var c in unit.JobCategories.GetAll())
                     {
                         <option value="@c.Id">@c.Title</option>
                     }

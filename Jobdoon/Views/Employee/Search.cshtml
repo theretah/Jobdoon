@@ -1,6 +1,13 @@
 ﻿@model Jobdoon.ViewModels.SearchViewModel
 @using Jobdoon.Utilities;
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
+@{
+    var provinces = unit.Provinces.GetAll();
+    var jobCategories = unit.JobCategories.GetAll();
+    var assignments = unit.Assignments.GetAll();
+    var experiences = unit.Experiences.GetAll();
+    var minimumSalaries = unit.MinimumSalaries.GetAll();
+}
 <div class="container-fluid bg-light">
     <div class="container">
         <nav class="navbar navbar-expand-lg">
@@ -27,23 +34,21 @@
 <div class="container mt-3 bg-gradient bg-primary bg-opacity-75 py-3">
     <form class="row">
         <div class="col-4">
-            <input type="text" class="form-control" id="inputPassword2" placeholder="عنوان شغلی، نام شرکت، مهارت یا ...">
+            <input asp-for="SearchQuery" class="form-control" placeholder="عنوان شغلی، نام شرکت، مهارت یا ...">
         </div>
         <div class="col">
-            <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
             <select class="form-select" id="inlineFormSelectPref">
                 <option selected>همه ی استان ها</option>
-                @foreach (var p in Model.Provinces)
+                @foreach (var p in provinces)
                 {
                     <option value="@p.Id">@p.Name</option>
                 }
             </select>
         </div>
         <div class="col">
-            <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
             <select class="form-select" id="inlineFormSelectPref">
                 <option selected>همه ی دسته بندی ها</option>
-                @foreach (var c in Model.JobCategories)
+                @foreach (var c in jobCategories)
                 {
                     <option value="@c.Id">@c.Title</option>
                 }
@@ -65,7 +70,7 @@
             </button>
             <div class="collapse border p-2" id="jobCategories">
                 <form action="/" method="post">
-                    @foreach (var c in Model.JobCategories)
+                    @foreach (var c in jobCategories)
                     {
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -89,7 +94,7 @@
             </button>
             <div class="collapse border p-2" id="provinces">
                 <form action="/" method="post">
-                    @foreach (var p in Model.Provinces)
+                    @foreach (var p in provinces)
                     {
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -112,9 +117,9 @@
                     نوع قرارداد
                 </span>
             </button>
-            <div class="collapse border p-2" id="assignment">
+            <div class="collapse border p-2" id="assignments">
                 <form action="/" method="post">
-                    @foreach (var a in Model.Assignments)
+                    @foreach (var a in assignments)
                     {
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -136,9 +141,9 @@
                     سابقه کار
                 </span>
             </button>
-            <div class="collapse border p-2" id="exprience">
+            <div class="collapse border p-2" id="experiences">
                 <form action="/" method="post">
-                    @foreach (var e in Model.Experiences)
+                    @foreach (var e in experiences)
                     {
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -165,7 +170,7 @@
             </button>
             <div class="collapse border p-2" id="salaries">
                 <form action="/" method="post">
-                    @foreach (var s in Model.MinimumSalaries)
+                    @foreach (var s in minimumSalaries)
                     {
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -178,13 +183,23 @@
             </div>
         </div>
         <div class="col-9 border">
-            <p class="fs-4">۲۳,۲۸۴ فرصت ‌شغلی فعال یافت شد:</p>
-            @foreach (var o in unit.Opportunities.GetAll())
+            @{
+                var count = Model.Opportunities.Count();
+                if (count == 0)
+                {
+                    <p class="fs-4">نتیجه ای یافت نشد</p>
+                }
+                else
+                {
+                    <p class="fs-4">@StringUtilities.Divide3DigitsByComma(count) فرصت ‌شغلی فعال یافت شد:</p>
+                }
+            }
+            @foreach (var o in Model.Opportunities)
             {
-                var company = unit.Companies.Find(c => c.Id == o.CompanyId).First();
-                var province = unit.Provinces.Find(p => p.Id == o.ProvinceId).First();
-                var assignment = unit.Assignments.Find(a => a.Id == o.AssignmentId).First();
-                var minSalary = unit.MinimumSalaries.Find(ms => ms.Id == o.MinimumSalaryId).First();
+                var company = unit.Companies.Get(o.CompanyId.Value);
+                var province = unit.Provinces.Get(o.ProvinceId);
+                var assignment = unit.Assignments.Get(o.AssignmentId);
+                var minSalary = unit.MinimumSalaries.Get(o.MinimumSalaryId);
                 <div class="card mb-3 w-100">
                     <div class="row g-0">
                         <div class="col-2">
