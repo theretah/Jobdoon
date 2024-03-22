@@ -19,7 +19,7 @@
     <div class="container mt-5">
         <form class="row">
             <div class="col-4">
-                <input type="text" class="form-control" id="inputPassword2" placeholder="عنوان شغلی، نام شرکت، مهارت یا ...">
+                <input asp-for="SearchQuery" class="form-control" id="inputPassword2" placeholder="عنوان شغلی، نام شرکت، مهارت یا ...">
             </div>
             <div class="col">
                 <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
@@ -42,7 +42,7 @@
                 </select>
             </div>
             <div class="col-2">
-                <button type="submit" class="btn btn-primary mb-3 w-100">جستجو در مشاغل</button>
+                <button asp-controller="Employee" asp-action="Search" type="submit" class="btn btn-primary mb-3 w-100">جستجو در مشاغل</button>
             </div>
         </form>
     </div>
