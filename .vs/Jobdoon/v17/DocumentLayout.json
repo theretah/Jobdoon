@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\CSP2\\Jobdoon\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\views\\employee\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\views\\employee\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\dataaccess\\irepositories\\iopportunityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\dataaccess\\irepositories\\iopportunityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\dataaccess\\repositories\\opportunityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\dataaccess\\repositories\\opportunityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|e:\\csp2\\jobdoon\\jobdoon\\viewmodels\\searchviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12155815-92D5-4912-A30D-9DC4C7152BA1}|Jobdoon\\Jobdoon.csproj|solutionrelative:jobdoon\\viewmodels\\searchviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +39,67 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OpportunityRepository.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\DataAccess\\Repositories\\OpportunityRepository.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\DataAccess\\Repositories\\OpportunityRepository.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\DataAccess\\Repositories\\OpportunityRepository.cs",
+              "RelativeToolTip": "Jobdoon\\DataAccess\\Repositories\\OpportunityRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-23T09:16:13.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IOpportunityRepository.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\DataAccess\\IRepositories\\IOpportunityRepository.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\DataAccess\\IRepositories\\IOpportunityRepository.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\DataAccess\\IRepositories\\IOpportunityRepository.cs",
+              "RelativeToolTip": "Jobdoon\\DataAccess\\IRepositories\\IOpportunityRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-23T09:15:49.742Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Search.cshtml",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Employee\\Search.cshtml",
+              "RelativeDocumentMoniker": "Jobdoon\\Views\\Employee\\Search.cshtml",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Views\\Employee\\Search.cshtml",
+              "RelativeToolTip": "Jobdoon\\Views\\Employee\\Search.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAMAAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-23T08:29:43.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\Controllers\\EmployeeController.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Jobdoon\\Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-23T08:25:38.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SearchViewModel.cs",
+              "DocumentMoniker": "E:\\CSP2\\Jobdoon\\Jobdoon\\ViewModels\\SearchViewModel.cs",
+              "RelativeDocumentMoniker": "Jobdoon\\ViewModels\\SearchViewModel.cs",
+              "ToolTip": "E:\\CSP2\\Jobdoon\\Jobdoon\\ViewModels\\SearchViewModel.cs",
+              "RelativeToolTip": "Jobdoon\\ViewModels\\SearchViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-23T08:25:18.019Z"
             }
           ]
         }

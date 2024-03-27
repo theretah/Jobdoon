@@ -25,65 +25,26 @@ namespace Jobdoon.Controllers
         [BindProperty(SupportsGet = true)]
         public SearchViewModel SearchModel { get; set; } = new SearchViewModel();
 
-        public void ApplySelectedOptions(SearchViewModel searchModel)
-        {
-            searchModel.JobCategoriesSelectList =
-                new SelectList(unit.JobCategories.GetAll(), nameof(JobCategory.Id), nameof(JobCategory.Title));
-            if (SearchModel.SelectedJobCategories.Count() > 0)
-            {
-                searchModel.Opportunities = searchModel.Opportunities.Where(o =>
-                    searchModel.SelectedJobCategories.Contains(o.JobCategoryId));
-            }
-
-            searchModel.AssignmentsSelectList =
-                new SelectList(unit.Assignments.GetAll(), nameof(Assignment.Id), nameof(Assignment.Title));
-            if (SearchModel.SelectedAssignments.Count() > 0)
-            {
-                searchModel.Opportunities = searchModel.Opportunities.Where(o =>
-                    searchModel.SelectedAssignments.Contains(o.AssignmentId));
-            }
-
-            searchModel.ProvincesSelectList =
-               new SelectList(unit.Provinces.GetAll(), nameof(Province.Id), nameof(Province.Name));
-            if (SearchModel.SelectedProvinces.Count() > 0)
-            {
-                searchModel.Opportunities = searchModel.Opportunities.Where(o =>
-                    searchModel.SelectedProvinces.Contains(o.ProvinceId));
-            }
-
-            searchModel.ExperiencesSelectList =
-              new SelectList(unit.Experiences.GetAll(), nameof(Experience.Id), nameof(Experience.Title));
-            if (SearchModel.SelectedExperiences.Count() > 0)
-            {
-                searchModel.Opportunities = searchModel.Opportunities.Where(o =>
-                    searchModel.SelectedExperiences.Contains(o.ExperienceId));
-            }
-
-            searchModel.SalariesSelectList =
-              new SelectList(unit.MinimumSalaries.GetAll(), nameof(MinimumSalary.Id),
-              nameof(MinimumSalary.ActualValue));
-            if (SearchModel.SelectedSalaries.Count() > 0)
-            {
-                searchModel.Opportunities = searchModel.Opportunities.Where(o =>
-                    searchModel.SelectedSalaries.Contains(o.MinimumSalaryId));
-            }
-        }
-
         public IActionResult Search()
         {
             ViewBag.Layout = "_Layout";
-
-            SearchModel.Opportunities = unit.Opportunities.GetAll();
-
-            ApplySelectedOptions(SearchModel);
+            SearchModel.Opportunities = unit.Opportunities.GetAllWithCompany();
 
             if (SearchModel.SearchQuery != null)
             {
-                SearchModel.Opportunities = unit.Opportunities.Find(o =>
+                SearchModel.Opportunities = SearchModel.Opportunities.Where(o =>
                     o.Title.ToLower().Contains(SearchModel.SearchQuery.ToLower()) ||
                     o.Company.LatinName.ToLower().Contains(SearchModel.SearchQuery.ToLower()) ||
                     o.Company.PersianName.Contains(SearchModel.SearchQuery.ToLower()))
                     .ToList();
+            }
+            if (SearchModel.SelectedJobCategory != null)
+            {
+                SearchModel.Opportunities = SearchModel.Opportunities.Where(o => o.JobCategoryId == SearchModel.SelectedJobCategory);
+            }
+            if (SearchModel.SelectedProvince != null)
+            {
+                SearchModel.Opportunities = SearchModel.Opportunities.Where(o => o.ProvinceId == SearchModel.SelectedProvince);
             }
 
             return View(SearchModel);

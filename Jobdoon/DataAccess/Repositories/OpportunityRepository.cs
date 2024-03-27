@@ -15,6 +15,11 @@ namespace Jobdoon.DataAccess.Repositories
             this.context = context;
         }
 
+        public IEnumerable<Opportunity> GetAllWithCompany()
+        {
+            return context.Opportunities.Include(o => o.Company).ToList();
+        }
+
         public IEnumerable<Opportunity> GetLatest()
         {
             return context.Opportunities.OrderByDescending(o => o.Date).ToList();
