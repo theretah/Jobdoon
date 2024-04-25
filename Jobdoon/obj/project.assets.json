@@ -8611,11 +8611,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\CSP2\\Jobdoon\\Jobdoon\\Jobdoon.csproj",
+      "projectUniqueName": "C:\\Users\\taher\\Documents\\CSP2\\Jobdoon\\Jobdoon\\Jobdoon.csproj",
       "projectName": "Jobdoon",
-      "projectPath": "E:\\CSP2\\Jobdoon\\Jobdoon\\Jobdoon.csproj",
+      "projectPath": "C:\\Users\\taher\\Documents\\CSP2\\Jobdoon\\Jobdoon\\Jobdoon.csproj",
       "packagesPath": "C:\\Users\\taher\\.nuget\\packages\\",
-      "outputPath": "E:\\CSP2\\Jobdoon\\Jobdoon\\obj\\",
+      "outputPath": "C:\\Users\\taher\\Documents\\CSP2\\Jobdoon\\Jobdoon\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\taher\\AppData\\Roaming\\NuGet\\NuGet.Config",

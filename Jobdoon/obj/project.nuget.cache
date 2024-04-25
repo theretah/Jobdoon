@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zUwpiYnKt2yhm6d8UNvb+ek+80U48NnkxNrtmKDH+oD38INco7XI2V8785pIPFKdr0I/RAbVF4P3BMJcMAH3bA==",
+  "dgSpecHash": "CeFM+izjdeJNUygOpMGRews3w20IQrs7FWIWTnxsW79i7XnraiEd7Njwe/St9TbxmYFsYP6/aosMtEHopHj0ag==",
   "success": true,
-  "projectFilePath": "E:\\CSP2\\Jobdoon\\Jobdoon\\Jobdoon.csproj",
+  "projectFilePath": "C:\\Users\\taher\\Documents\\CSP2\\Jobdoon\\Jobdoon\\Jobdoon.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\taher\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\taher\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
