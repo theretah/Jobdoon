@@ -2,9 +2,11 @@
 @inject Jobdoon.DataAccess.UnitOfWork.IUnitOfWork unit
 @inject Microsoft.AspNetCore.Identity.UserManager<Jobdoon.Models.Entities.AppUser> userManager
 @{
+    var userId = userManager.GetUserAsync(User).Result.Id;
     var companyCategory = unit.CompanyCategories.Find(c => c.Id == Model.Company.CompanyCategoryId).First();
     var personnelCount = unit.PersonnelCounts.Find(c => c.Id == Model.Company.PersonnelCountId).First();
     var opportunities = unit.Opportunities.Find(o => o.CompanyId == Model.Company.Id).ToList();
+    var request = unit.Requests.Find(r=>r.OpportunityId==Model.Opportunity.Id && r.EmployeeId == userId).FirstOrDefault();
 }
 <div class="container-fluid bg-dark">
     <div class="container">
@@ -129,9 +131,15 @@
                                 <p class="card-text">@user.FullName</p>
                                 <p class="card-text">@user.Email</p>
                                 <hr />
+                                {if(request==null){
                                 <form method="post" asp-controller="Employee" asp-action="SendRequest" asp-route-opportunityId="@Model.Opportunity.Id">
                                     <button type="submit" class="btn btn-primary btn-lg w-100">ارسال درخواست</button>
                                 </form>
+                                }else{
+                                <form method="post" asp-controller="Employee" asp-action="DeleteRequest" asp-route-opportunityId="@Model.Opportunity.Id">
+                                    <button type="submit" class="btn btn-danger btn-lg w-100">لغو درخواست</button>
+                                </form>
+                                }}
                             }
                             else
                             {

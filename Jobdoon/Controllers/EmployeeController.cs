@@ -1,4 +1,5 @@
-﻿using Jobdoon.DataAccess.UnitOfWork;
+﻿using Azure.Identity;
+using Jobdoon.DataAccess.UnitOfWork;
 using Jobdoon.Models.Entities;
 using Jobdoon.Utilities;
 using Jobdoon.ViewModels;
@@ -64,6 +65,20 @@ namespace Jobdoon.Controllers
                 RequestStateId = ((int)RequestStatesUtilities.Sent)
             });
             unit.Complete();
+            return RedirectToAction("Requests");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> DeleteRequest(int opportunityId)
+        {
+            var user = await userManager.GetUserAsync(User);
+            var request = unit.Requests.Find(r => r.EmployeeId == user.Id && r.OpportunityId == opportunityId).FirstOrDefault();
+            if (request != null)
+            {
+                unit.Requests.Remove(request);
+                unit.Complete();
+            }
             return RedirectToAction("Requests");
         }
 

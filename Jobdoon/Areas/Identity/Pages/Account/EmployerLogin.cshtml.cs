@@ -76,6 +76,12 @@ namespace Jobdoon.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             var user = await userManager.FindByEmailAsync(Email);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "نام کاربری یا رمزعبور اشتباه است.");
+
+                return await OnGetAsync();
+            }
             if (user.IsEmployer == false)
             {
                 ModelState.AddModelError(string.Empty, "ورود از این بخش فقط با حساب کارفرمایی امکان پذیر است.");
